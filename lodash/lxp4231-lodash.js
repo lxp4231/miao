@@ -17,7 +17,7 @@ var lxp4231 = function() {
         }
         return newArr
     }
-
+    //
     function compact(array) {
         var arr = []
         for (var key of array) {
@@ -27,7 +27,7 @@ var lxp4231 = function() {
         }
         return arr
     }
-
+    //
     function difference(arr, ...array) {
         var res = []
         var newArray = array.flat()
@@ -38,38 +38,75 @@ var lxp4231 = function() {
         }
         return res
     }
-
-    function drop(array, n) {
+    //
+    function drop(array, n = 1) {
         array.splice(0, n)
         return array
     }
-
-    function dropRight(array, n) {
-        array.splice(array.length - n, n)
+    //
+    function dropRight(array, n = 1) {
+        if (n > array.length) return []
+        else {
+            array.splice(array.length - n, n)
+        }
         return array
     }
-
-    // function fill(array, value, start = 0, end = array.length) {
-    //     for (let i = start; i < end; i++) {
-    //         array[i] = value
-    //     }
-    //     return array
-    // }
-
+    //
+    function fill(array, value, start = 0, end = array.length) {
+        for (var i = start; i < end; i++) {
+            array[i] = value
+        }
+        return array
+    }
+    //
     function flatten(array) {
         var arr = []
         for (var i = 0; i < array.length; i++) {
-            if (Array.isArray(array[i])) {
-                for (var j = 0; j < array[i].length; j++) {
-                    arr.push(array[i][j])
+            var temp = array[i]
+            if (Array.isArray(temp)) {
+                for (var j = 0; j < temp.length; j++) {
+                    arr.push(temp[j])
                 }
             } else {
-                arr.push(array[i])
+                arr.push(temp)
             }
         }
         return arr
     }
-
+    //
+    function flatttenDeep(array) {
+        var arr = []
+        for (var i = 0; i < array.length; i++) {
+            var temp = array[i]
+            if (Array.isArray(temp)) {
+                temp = flatttenDeep(temp)
+                for (var j = 0; j < temp.length; j++) {
+                    arr.push(temp[j])
+                }
+            } else {
+                arr.push(temp)
+            }
+        }
+        return arr
+    }
+    //
+    function flattenDepth(array, n = 1) {
+        var arr = []
+        for (var i = 0; i < array.length; i++) {
+            var temp = array[i]
+            if (Array.isArray(temp)) {
+                temp = flattenDepth(temp, n - 1)
+                for (var j = 0; j < temp.length; j++) {
+                    arr.push(temp[j])
+                }
+            } else {
+                arr.push(temp)
+            }
+        }
+        if (n == 0) return array
+        return arr
+    }
+    //
     function fromPairs(pairs) {
         var map = {}
         for (var i = 0; i < pairs.length; i++) {
@@ -77,14 +114,74 @@ var lxp4231 = function() {
         }
         return map
     }
+    //
+    function head(array) {
+        if (!array) return undefined
+        else return array[0]
+    }
+    //
+    function nth(array, n) {
+        if (n > 0) return array[n - 1]
+        if (n < 0) {
+            var m = Math.abs(n)
+            return array[array.length - m]
+        }
+    }
+    //
+    function pull(array, ...nums) {
+        var res = []
+        array.forEach(it => {
+            if (!nums.includes(it)) {
+                res.push(it)
+            }
+        })
+        return res
+    }
+    //
+    function pullAll(array, nums) {
+        var res = []
+        array.forEach(it => {
+            if (!nums.includes(it)) {
+                res.push(it)
+            }
+        })
+        return res
+    }
+    //
+    function sortedIndex(array, value) {
+        var n = 0
+        array.push(value)
+        array.sort((a, b) => {
+            return a - b
+        })
+        array.forEach((it, index) => {
+            if (it == value) {
+                n = index
+            }
+        })
+        return n
+    }
+    //
+
+
+
+    //
     return {
         chunk: chunk,
         compact: compact,
         difference: difference,
         drop: drop,
         dropRight: dropRight,
-        // fill: fill,
+        fill: fill,
         flatten: flatten,
-        fromPairs: fromPairs
+        flatttenDeep: flatttenDeep,
+        flattenDepth: flattenDepth,
+        fromPairs: fromPairs,
+        head: head,
+        nth = nth,
+        pull = pull,
+        pullAll = pullAll,
+        sortedIndex = sortedIndex,
+
     }
 }()
