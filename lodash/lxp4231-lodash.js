@@ -17,7 +17,7 @@ var lxp4231 = function() {
         }
         return newArr
     }
-    //
+
     function compact(array) {
         var arr = []
         for (var key of array) {
@@ -27,7 +27,7 @@ var lxp4231 = function() {
         }
         return arr
     }
-    //
+
     function difference(arr, ...array) {
         var res = []
         var newArray = array.flat()
@@ -38,12 +38,12 @@ var lxp4231 = function() {
         }
         return res
     }
-    //
+
     function drop(array, n = 1) {
         array.splice(0, n)
         return array
     }
-    //
+
     function dropRight(array, n = 1) {
         if (n > array.length) return []
         else {
@@ -51,14 +51,14 @@ var lxp4231 = function() {
         }
         return array
     }
-    //
+
     function fill(array, value, start = 0, end = array.length) {
         for (var i = start; i < end; i++) {
             array[i] = value
         }
         return array
     }
-    //
+
     function flatten(array) {
         var arr = []
         for (var i = 0; i < array.length; i++) {
@@ -73,7 +73,7 @@ var lxp4231 = function() {
         }
         return arr
     }
-    //
+
     function flatttenDeep(array) {
         var arr = []
         for (var i = 0; i < array.length; i++) {
@@ -89,7 +89,7 @@ var lxp4231 = function() {
         }
         return arr
     }
-    //
+
     function flattenDepth(array, n = 1) {
         var arr = []
         for (var i = 0; i < array.length; i++) {
@@ -106,7 +106,7 @@ var lxp4231 = function() {
         if (n == 0) return array
         return arr
     }
-    //
+
     function fromPairs(pairs) {
         var map = {}
         for (var i = 0; i < pairs.length; i++) {
@@ -114,12 +114,12 @@ var lxp4231 = function() {
         }
         return map
     }
-    //
+
     function head(array) {
         if (!array) return undefined
         else return array[0]
     }
-    //
+
     function nth(array, n) {
         if (n > 0) return array[n - 1]
         if (n < 0) {
@@ -127,7 +127,7 @@ var lxp4231 = function() {
             return array[array.length - m]
         }
     }
-    //
+
     function pull(array, ...nums) {
         var res = []
         array.forEach(it => {
@@ -137,7 +137,7 @@ var lxp4231 = function() {
         })
         return res
     }
-    //
+
     function pullAll(array, nums) {
         var res = []
         array.forEach(it => {
@@ -147,7 +147,7 @@ var lxp4231 = function() {
         })
         return res
     }
-    //
+
     function sortedIndex(array, value) {
         var n = 0
         array.push(value)
@@ -161,11 +161,6 @@ var lxp4231 = function() {
         })
         return n
     }
-    //
-
-
-
-    //
     return {
         chunk: chunk,
         compact: compact,
@@ -181,7 +176,6 @@ var lxp4231 = function() {
         nth = nth,
         pull = pull,
         pullAll = pullAll,
-        sortedIndex = sortedIndex,
-
+        sortedIndex = sortedIndex
     }
 }()
