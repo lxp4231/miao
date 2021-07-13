@@ -1,5 +1,4 @@
 var lxp4231 = function() {
-    //
     function chunk(arr, n) {
         var newArr = []
         var temp = []
@@ -18,7 +17,7 @@ var lxp4231 = function() {
         }
         return newArr
     }
-    //
+
     function compact(array) {
         var arr = []
         for (var key of array) {
@@ -28,7 +27,7 @@ var lxp4231 = function() {
         }
         return arr
     }
-    //
+
     function difference(arr, ...array) {
         var res = []
         var newArray = array.flat()
@@ -39,24 +38,24 @@ var lxp4231 = function() {
         }
         return res
     }
-    //
+
     function drop(array, n) {
         array.splice(0, n)
         return array
     }
-    //
+
     function dropRight(array, n) {
         array.splice(array.length - n, n)
         return array
     }
-    //
+
     function fill(array, value, start = 0, end = array.length) {
         for (let i = start; i < end; i++) {
             array[i] = value
         }
         return array
     }
-    //
+
     function flatten(array) {
         var arr = []
         for (var i = 0; i < array.length; i++) {
@@ -78,15 +77,13 @@ var lxp4231 = function() {
         }
         return map
     }
-
-    //返回
     return {
         chunk: chunk,
         compact: compact,
         difference: difference,
         drop: drop,
-        dropRight = dropRight,
         fill = fill,
+        dropRight = dropRight,
         flatten = flatten,
         fromPairs = fromPairs
     }
