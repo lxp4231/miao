@@ -49,12 +49,12 @@ var lxp4231 = function() {
         return array
     }
 
-    function fill(array, value, start = 0, end = array.length) {
-        for (let i = start; i < end; i++) {
-            array[i] = value
-        }
-        return array
-    }
+    // function fill(array, value, start = 0, end = array.length) {
+    //     for (let i = start; i < end; i++) {
+    //         array[i] = value
+    //     }
+    //     return array
+    // }
 
     function flatten(array) {
         var arr = []
@@ -83,7 +83,7 @@ var lxp4231 = function() {
         difference: difference,
         drop: drop,
         dropRight: dropRight,
-        fill: fill,
+        // fill: fill,
         flatten: flatten,
         fromPairs: fromPairs
     }
