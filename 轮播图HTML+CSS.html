@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hollow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* 大盒子 */
+        
+        .box {
+            margin: 100px auto;
+            position: relative;
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        /* 装图片的盒子 */
+        
+        .item {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s;
+        }
+        
+        .item1 {
+            background-image: url(https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/1.jpg);
+        }
+        
+        .item2 {
+            background-image: url(https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/2.jpg);
+            left: 100%;
+        }
+        
+        .item3 {
+            background-image: url(https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/3.jpg);
+            left: 200%;
+        }
+        
+        input {
+            display: none;
+        }
+        
+        .lab {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 10px;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .lab>label {
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1.5px solid white;
+        }
+        
+        .box input:nth-of-type(1):checked~.lab label:nth-of-type(1) {
+            background-color: rgb(26, 26, 26);
+        }
+        
+        .box input:nth-of-type(2):checked~.lab label:nth-of-type(2) {
+            background-color: rgb(26, 26, 26);
+        }
+        
+        .box input:nth-of-type(3):checked~.lab label:nth-of-type(3) {
+            background-color: rgb(26, 26, 26);
+        }
+        
+        .box input:nth-of-type(1):checked~.item {
+            transform: translateX(0);
+        }
+        
+        .box input:nth-of-type(2):checked~.item {
+            transform: translateX(-100%);
+        }
+        
+        .box input:nth-of-type(3):checked~.item {
+            transform: translateX(-200%);
+        }
+    </style>
+</head>
+
+<body>
+    <!--  大盒子 -->
+    <div class="box">
+        <!-- 三个单选按钮 -->
+        <input type="radio" name="choose" id="choose1" checked>
+        <input type="radio" name="choose" id="choose2">
+        <input type="radio" name="choose" id="choose3">
+        <!-- 放三张背景图片-->
+        <div class="item item1"></div>
+        <div class="item item2"></div>
+        <div class="item item3"></div>
+        <!-- label标签 -->
+        <span class="lab">
+             <label for="choose1"></label>
+             <label for="choose2"></label>
+             <label for="choose3"></label>
+         </span>
+    </div>
+</body>
+
+</html>

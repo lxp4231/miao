@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0,
+    maximum=1.0,minimum=1.0">
+    <title>qq</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .position_box1 {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            height: 100px;
+            width: 100%;
+            background-color: pink;
+        }
+        
+        .position_box2 {
+            position: absolute;
+            top: 100px;
+            width: 200px;
+            height: 100%;
+            background-color: skyblue;
+        }
+        
+        .position_box2_child1 {
+            position: absolute;
+            top: 150px;
+            bottom: 0;
+            width: 200px;
+            background-color: purple;
+            overflow: auto;
+        }
+        
+        .position_box3 {
+            position: absolute;
+            top: 100px;
+            left: 200px;
+            width: 100%;
+            height: 100%;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="position_box1">123</div>
+
+        <div class="position_box2">
+            <div class="position_box2_child1">
+                <ul>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                    <li>123</li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="position_box3">666</div>
+
+    </div>
+</body>
+
+</html>

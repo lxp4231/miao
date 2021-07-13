@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            zoom: 4;
+        }
+        
+        label {
+            position: relative;
+            display: block;
+            margin: 10px auto;
+            width: 52px;
+            height: 32px;
+            border-radius: 16px;
+        }
+        
+        .inp {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 52px;
+            height: 32px;
+            border-radius: 16px;
+            border: 1px solid #d6d8d9;
+            appearance: none;
+            transition: all 1s;
+            /* margin-left: ; */
+        }
+        
+        .inp:checked {
+            border-color: #04be02;
+            background-color: #04be02;
+        }
+        /* 白色盒子 */
+        
+        .inp::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            margin-top: -15px;
+            width: 50px;
+            height: 30px;
+            border-radius: 16px;
+            transition: all .5s;
+            background-color: #fff;
+        }
+        
+        .inp:checked::after {
+            transform: scale(0);
+        }
+        /* 白色球 */
+        
+        .inp::before {
+            z-index: 1;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            margin-top: -13px;
+            width: 26px;
+            height: 26px;
+            border-radius: 13px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+            transition: all .2s;
+            animation: back .5s;
+        }
+        
+        .inp:checked::before {
+            transform: translateX(24px);
+            /* animation: move .5s; */
+        }
+        /* @keyframes move {
+            0% {
+                width: 26px;
+            }
+            30% {
+                width: 35px;
+            }
+            100% {
+                width: 26px;
+            }
+        }
+        
+        @keyframes back {
+            0% {
+                width: 26px;
+            }
+            50% {
+                width: 35px;
+            }
+            100% {
+                width: 26px;
+            }
+        } */
+    </style>
+</head>
+
+<body>
+    <label for="">
+      <input type="checkbox" class="inp">
+      <div></div>
+  </label>
+</body>
+
+</html>

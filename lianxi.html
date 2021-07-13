@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function flattenDeep(array) {
+        //     var arr = []
+        //     for (var i = 0; i < array.length; i++) {
+        //         var n = array[i]
+        //         if (Array.isArray(n)) {
+        //             for ()
+        //         } else {
+        //             arr.push(n)
+        //         }
+        //     }
+        // }
+        // console.log(flattenDeep([1, [2, [3, [4]], 5]]));
+
+        function fromPairs(pairs) {
+            var map = {}
+            for (var i = 0; i < pairs.length; i++) {
+                map[pairs[i][0]] = pairs[i][1]
+            }
+            return map
+        }
+        console.log(fromPairs([
+            ['fred', 30],
+            ['barney', 40]
+        ]));
+    </script>
+</body>
+
+</html>

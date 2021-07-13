@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>画图</title>
+    <style>
+        canvas {
+            border: 2px solid #f0f;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="500" height="500"></canvas>
+</body>
+<script>
+    var canvas = document.querySelector('canvas')
+    canvas.style.imageRendering = 'pixelated' //放大时的插帧方式：不插帧，直接放大像素
+    var ctx = canvas.getContext('2d')
+
+    function dot(x, y, color = 'black') {
+        x = Math.round(x)
+        y = Math.round(y)
+        ctx.fillStyle = color
+        ctx.fillRect(x, y, 1, 1)
+    }
+    /**
+     * YOUR TASK
+        * 在 坐标 (42, 42) 画出一个点
+        * 画一条实线
+        * 画一条一个实点一个空点的虚线
+        * 画一条两个实点两个空点的虚线
+        * 画一条三个实点两个空点的虚线
+        * 画一条45度的斜线
+        * 画一条30度的斜线（与x轴或y轴的夹角呈30度）
+        * 画一条跨越画布左上角和右下角的对角线
+        * 画一个空心矩形
+        * 画一个实心矩形
+        * 画两个个空心的圆，居中：
+          * 一个半径为50像素
+          * 一个半径为200像素
+        * 画一个实心的圆，半径至少为100像素
+        * 画一个【大小合适】的sin(x)的图像
+
+        * 画出rgb色彩空间的某一面（尺寸要大于100x100）
+          如果做出上一题后，尝试将其每个点的坐标乘以一个矩阵（如(2,0,0,2)或(1,0.27得到新的位置，即绘制出被线性变幻后的色彩空间某一面
+          可以考虑如下几种矩阵：
+             2 0
+             0 2
+             ------
+             1  0.27
+             0  1
+             ------
+             0.5    0.87
+             -0.87  0.5
+
+     */
+</script>
+<script>
+    // dot(42, 42, 'red')
+    //画直线函数
+    function drawLine(x1, y1, x2, y2, color, width) {
+        ctx.beginPath()
+        ctx.moveTo(x1, y1)
+        ctx.lineTo(x2, y2)
+        ctx.strokeStyle = color
+        ctx.lineWidth = width
+        ctx.stroke()
+        ctx.closePath()
+    }
+    //直线
+    drawLine(100, 30, 450, 30, '#fc5531', 2)
+    drawLine(0, 0, 500, 500, '#fc5531', 2)
+    for (var i = 0; i < 30; i++) {
+        //直虚线
+        drawLine(100 + 10 * i, 50, 105 + 10 * i, 50, '#fc5531', 2)
+            //一条一个实点一个空点的虚线
+        drawLine(100 + 12 * i, 40, 105 + 12 * i, 40, '#fc5531', 2)
+        drawLine(107.5 + 12 * i, 40, 108.5 + 12 * i, 40, '#fc5531', 2)
+            //点虚线
+        drawLine(107.5 + 10 * i, 20, 108.5 + 10 * i, 20, '#fc5531', 2)
+            //倾斜45deg虚线
+        drawLine(100 + 5 * i, 50 + 5 * i, 102 + 5 * i, 50 + 5 * i, '#0fbd69', 2)
+            //倾斜30deg虚线
+        drawLine(100 + 10 * i, 50 + 5 * i, 102 + 10 * i, 50 + 5 * i, '#0fbd69', 2)
+    }
+
+    //空心矩形
+    ctx.fillRect(0, 200, 110, 110)
+        //清除画布  clearRect(x坐标,y坐标,宽，高)
+    ctx.clearRect(10, 210, 90, 90)
+        // ctx.clearRect(0+10,200+10,110-20, 110-20)
+
+    //实心矩形 fillRect(x坐标,y坐标,宽，高)
+    ctx.beginPath()
+    ctx.fillRect(320, 200, 110, 110)
+        //随机大小的矩形 var wh = Math.random() * 200
+
+    //画圆 arc(x,y,r,startangle,endangle,counterclockwise) xy为圆心坐标，r半径
+    function circle(x, y, r, star, end, bl, width, color) {
+        ctx.beginPath()
+        ctx.arc(x, y, r, star, end, bl)
+        ctx.lineWidth = width
+        ctx.strokeStyle = color
+        ctx.stroke()
+        ctx.closePath()
+    }
+    //50的圆
+    circle(200, 360, 50, 0, Math.PI * 2, false, 2, '#fc5531')
+        //100的圆
+    circle(200, 360, 100, 0, Math.PI * 2, false, 2, '#fc5531')
+</script>
+
+</html>

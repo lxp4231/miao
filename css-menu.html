@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .menu {
+            margin: 100px 500px;
+        }
+        
+        .home_page {
+            margin-left: 30px;
+        }
+        
+        .home_page,
+        .prodects,
+        .more {
+            float: left;
+            width: 100px;
+            height: 30px;
+            margin-left: 20px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid #d4843e;
+        }
+        
+        .home_page:hover {
+            background-color: #ebedef;
+            cursor: pointer;
+        }
+        
+        .prodects:hover .dd {
+            visibility: inherit;
+        }
+        
+        .home_page:hover .dd {
+            visibility: inherit;
+        }
+        
+        .more:hover .dd {
+            visibility: inherit;
+        }
+        
+        .prodects:hover {
+            background-color: #ebedef;
+            cursor: pointer;
+        }
+        
+        .more:hover {
+            background-color: #ebedef;
+            cursor: pointer;
+        }
+        
+        .dd {
+            visibility: hidden;
+        }
+        
+        li {
+            width: 100px;
+            height: 30px;
+            background-color: #ebedef;
+            margin-top: 2px;
+        }
+        
+        li:hover {
+            background-color: #d4843e;
+            color: #fff;
+            /* cursor: pointer; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <div class="home_page">
+            <div class="dt">首页</div>
+            <div class="dd">
+                <ul>
+                    <li>产品</li>
+                    <li>产品</li>
+                    <li>产品</li>
+                    <li>产品</li>
+                    <li>产品 </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="prodects">
+            <div class="dt">我的产品</div>
+            <div class="dd">
+                <ul>
+                    <li>产品</li>
+                    <li>产品</li>
+                    <li>产品</li>
+                    <li>产品</li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="more">
+            <div class="dt">更多></div>
+            <div class="dd">
+                <ul>
+                    <li>产品</li>
+                    <li>产品</li>
+                    <li>产品</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            display: flex;
+            align-items: center;
+            flex-flow: column wrap;
+            justify-content: space-around;
+            width: 1300px;
+            height: 700px;
+            margin: 100px auto;
+        }
+        
+        .box>div {
+            width: 250px;
+            height: 330px;
+            background-color: pink;
+        }
+        
+        .box div:nth-child(1) {
+            height: 680px;
+        }
+        /* box2 */
+        
+        .box2 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            width: 1300px;
+            height: 700px;
+            margin: 100px auto;
+            background-color: skyblue;
+        }
+        
+        .box2 div {
+            width: 250px;
+            height: 330px;
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+    </div>
+    <div class="box2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: relative;
+            left: 50%;
+            overflow: hidden;
+            margin-left: -300px;
+            width: 600px;
+            height: 400px;
+            border: 1px solid #ccc;
+        }
+        
+        img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 100%;
+            transition: all .5s;
+        }
+        
+        input {
+            display: none;
+        }
+        
+        .ipt1:checked~div img:nth-child(1),
+        .ipt2:checked~div img:nth-child(2),
+        .ipt3:checked~div img:nth-child(3) {
+            left: 0;
+        }
+        
+        label {
+            position: relative;
+            left: 40%;
+            margin: 15px;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 25px;
+            color: #fff;
+            border-radius: 25px;
+            background-color: #aed2e0;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <input type="radio" id="a" name="b" checked="checked" class="ipt1">
+        <input type="radio" id="b" name="b" class="ipt2">
+        <input type="radio" id="c" name="b" class="ipt3">
+        <label for="b">1</label>
+        <label for="a">2</label>
+        <label for="c">3</label>
+        <div class="box">
+            <img src="https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/1.jpg " alt=" ">
+            <img src=" https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/2.jpg " alt=" ">
+            <img src=" https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/3.jpg " alt=" ">
+        </div>
+    </section>
+</body>
+
+</html>

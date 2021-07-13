@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        @keyframes map {
+            0% {}
+            70% {
+                width: 30px;
+                height: 30px;
+                opacity: 1;
+            }
+            100% {
+                width: 50px;
+                height: 50px;
+                opacity: 0;
+            }
+        }
+        
+        .map {
+            position: relative;
+            margin: auto;
+            width: 747px;
+            height: 617px;
+            background: url(image/map.png) rgba(43, 40, 40, 0.856) no-repeat;
+        }
+        
+        .city {
+            position: absolute;
+            top: 228px;
+            left: 550px;
+        }
+        
+        .dotted {
+            width: 8px;
+            height: 8px;
+            background-color: #009dfd;
+            border-radius: 50%;
+        }
+        
+        div[class^=push] {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #009dfd;
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+            /* animation: 名字 持续时间 运动曲线（linear匀速） 何时开始 重复次数(循环infinite) 是否反向播放（altermate） 动画结束后（forwards保持）; */
+            animation: map 1.2s linear infinite;
+        }
+        
+        div .push2 {
+            animation-delay: 0.4s;
+        }
+        
+        div .push3 {
+            animation-delay: 0.8s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="map">
+        <div class="city">
+            <div class="dotted"></div>
+            <div class="push1"></div>
+            <div class="push2"></div>
+            <div class="push3"></div>
+        </div>
+
+    </div>
+</body>
+
+</html>

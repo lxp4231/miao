@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lianxi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .w {
+            width: 600px;
+            margin: auto;
+        }
+        
+        .head {
+            height: 24px;
+            background-color: #000;
+        }
+        
+        .head p {
+            height: 100%;
+            color: #fff;
+        }
+        
+        .body2 {
+            display: inline-block;
+        }
+        
+        .body1 {
+            margin-top: 15px;
+        }
+        
+        .body2 ul li:hover {
+            background-color: red;
+        }
+        
+        .body2 ul li {
+            float: left;
+            margin: 15px 30px 0 0;
+            width: 180px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: 3px solid #000;
+            background-color: pink;
+        }
+        
+        .body2 ul li:nth-child(3n) {
+            margin-right: 0;
+        }
+        
+        .body3 {
+            margin-top: 20px;
+        }
+        
+        .body3 p {
+            border-bottom: 1px dotted #000;
+        }
+        
+        .body3 p:last-child {
+            border-bottom: 0;
+        }
+        
+        .footer {
+            width: 100%;
+            height: 45px;
+            margin-top: 20px;
+            text-align: center;
+            background-color: #ee8aee;
+        }
+        
+        .hangnei {
+            margin-top: 20px;
+        }
+        
+        .hangnei span {
+            width: 180px;
+            height: 40px;
+            margin-top: 15px;
+            display: inline-block;
+            border: 2px solid #000;
+            background-color: skyblue;
+        }
+        
+        .hangnei span:nth-child(3n+2) {
+            margin: 0 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="head">
+        <p class="w">hello world 请调整浏览器窗口大小查看效果</p>
+    </div>
+    <div class="body w">
+        <div class="body1"> 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
+
+        </div>
+        <div class="body2">
+            <ul>
+                <li>宽180高40(包含边框)</li>
+                <li>产品</li>
+                <li>产品</li>
+                <li>产品</li>
+                <li>产品</li>
+                <li>产品</li>
+                <li>产品</li>
+                <li>产品</li>
+                <li>产品</li>
+                <li>产品</li>
+                <li>产品</li>
+                <li>产品</li>
+            </ul>
+
+        </div>
+        <div class="body3">
+            <p>link</p>
+            <p>link</p>
+            <p>link</p>
+            <p>link</p>
+            <p>link</p>
+        </div>
+    </div>
+    <div class="hangnei w">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="footer">
+        <p>©版权所有 <br> 本页所有布局均使用块元素
+        </p>
+    </div>
+
+</body>
+
+</html>
