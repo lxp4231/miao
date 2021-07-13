@@ -50,8 +50,11 @@ var lxp4231 = function() {
         return array
     }
     //
-    function fill(array, value, start, end) {
-        return array.fill(value, start, end)
+    function fill(array, value, start = 0, end = array.length) {
+        for (let i = start; i < end; i++) {
+            array[i] = value
+        }
+        return array
     }
     //
     function flatten(array) {
