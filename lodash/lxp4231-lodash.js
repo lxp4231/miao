@@ -82,9 +82,9 @@ var lxp4231 = function() {
         compact: compact,
         difference: difference,
         drop: drop,
-        fill = fill,
-        dropRight = dropRight,
-        flatten = flatten,
-        fromPairs = fromPairs
+        dropRight: dropRight,
+        fill: fill,
+        flatten: flatten,
+        fromPairs: fromPairs
     }
 }()
