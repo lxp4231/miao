@@ -173,9 +173,9 @@ var lxp4231 = function() {
         flattenDepth: flattenDepth,
         fromPairs: fromPairs,
         head: head,
-        nth = nth,
-        pull = pull,
-        pullAll = pullAll,
-        sortedIndex = sortedIndex
+        nth: nth,
+        pull: pull,
+        pullAll: pullAll,
+        sortedIndex: sortedIndex
     }
 }()
