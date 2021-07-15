@@ -10,21 +10,10 @@
 
 <body>
     <script>
-        function sortedIndex(array, value) {
-            var n = 0
-            array.push(value)
-            array.sort((a, b) => {
-                return a - b
-            })
-            array.forEach((it, index) => {
-                if (it == value) {
-                    n = index
-                }
-            })
-            return n
+        function zip(arrays) {
+
         }
-        console.log(sortedIndex([23, 30, 50, 89, 345], 40));
-        // => 1
+        console.log(zip(['fred', 'barney'], [30, 40], [true, false]));
     </script>
 </body>
 

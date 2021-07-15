@@ -161,6 +161,48 @@ var lxp4231 = function() {
         })
         return n
     }
+    //
+    function sortedUniq(array) {
+        var newArry = array.filter((it, index) => {
+            return array.indexOf(it) == index
+        })
+        return newArry
+    }
+    //
+    function union(...arrays) {
+        var newArr = arrays.flat()
+        return newArr.filter((it, index) => {
+            return newArr.indexOf(it) == index
+        })
+    }
+    //
+    function uniq(array) {
+        return array.filter((it, index) => {
+            return array.indexOf(it) == index
+        })
+    }
+    //
+    function zip(...arr) {
+        //
+        var newarr = []
+        var i = 0
+        while (i < arr[0].length) {
+            arr.forEach(it => {
+                newarr.push(it[i])
+            })
+            i++
+        }
+        //
+        function ToTwo(newarr, n) {
+            let res = []
+            for (let i = 0; i < newarr.length; i += n) {
+                res.push(newarr.slice(i, i + n))
+            }
+            return res
+        }
+        return ToTwo(newarr, arr.length)
+    }
+    //
     return {
         chunk: chunk,
         compact: compact,
@@ -176,6 +218,10 @@ var lxp4231 = function() {
         nth: nth,
         pull: pull,
         pullAll: pullAll,
-        sortedIndex: sortedIndex
+        sortedIndex: sortedIndex,
+        sortedUniq: sortedUniq,
+        union: union,
+        uniq: uniq,
+        zip: zip
     }
 }()
