@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="reg" placeholder="输入正则表达式">
+    <label><input type="checkbox"  id="i">i</label>
+    <label><input type="checkbox" id="g">g</label>
+    <label><input type="checkbox" id="m">m</label>
+    <button>点击查找</button>
+    <section>
+        <p>在下框输入内容:</p>
+        <textarea name="text1" id="text1" cols="30" rows="10">12345678asdf2334c66666</textarea>
+        <p>结果:</p>
+        <textarea name="text2" id="text2" cols="30" rows="10"></textarea>
+        <!-- <pre></pre> -->
+    </section>
+    <style>
+        textarea {
+            display: block;
+            margin-top: 10px;
+            width: 300px;
+            height: 180px;
+            /* 禁止拖动 */
+            resize: none;
+            font-family: consolas;
+            font-size: 16px;
+        }
+        
+        pre {
+            display: block;
+            margin-top: 10px;
+            width: 300px;
+            height: 180px;
+            font-family: consolas;
+            font-size: 16px;
+            border: 1px solid #253436;
+        }
+        
+        p {
+            color: #253436;
+        }
+        
+        em {
+            background-color: #9fcfff;
+            font-style: normal;
+        }
+    </style>
+    <script>
+        let ipt = document.querySelector('#reg')
+        let btn = document.querySelector('button')
+        let text1 = document.querySelector('#text1')
+        let text2 = document.querySelector('#text2')
+        let i = document.querySelector('#i')
+        let g = document.querySelector('#g')
+        let m = document.querySelector('#m')
+        let label = document.querySelectorAll('label')
+            // i.checked ? ignoreCase = 'i' : ignoreCase = ''
+            // g.checked ? global = 'g' : global = ''
+            // m.checked ? multiline = 'm' : multiline = ''
+        btn.addEventListener('click', function() {
+            i.checked ? ignoreCase = 'i' : ignoreCase = ''
+            g.checked ? global = 'g' : global = ''
+            m.checked ? multiline = 'm' : multiline = ''
+            let reg = new RegExp(`${ipt.value}`, `${ignoreCase}${global}${multiline}`)
+            let text = text1.value
+            let res = text.match(reg)
+            text2.value = res.join('')
+        })
+        for (let i = 0; i < label.length; i++) {
+            label[i].addEventListener('click', function() {
+                btn.click()
+            })
+        }
+    </script>
+</body>
+
+</html>
