@@ -9,8 +9,9 @@
 </head>
 <style>
     .container {
+        margin: 100px auto;
         position: relative;
-        width: 100%;
+        width: 500px;
         height: 300px;
         background-color: #ebedef;
     }
@@ -74,6 +75,20 @@
                     //盒子拖动后的坐标
                     x = e.pageX - markX
                     y = e.pageY - markY
+
+                    //限制范围
+                    if (x < 0) {
+                        x = 0
+                    }
+                    if (x > container.offsetWidth - _this.offsetWidth) {
+                        x = container.offsetWidth - _this.offsetWidth
+                    }
+                    if (y < 0) {
+                        y = 0
+                    }
+                    if (y > container.offsetHeight - _this.offsetHeight) {
+                        y = container.offsetHeight - _this.offsetHeight
+                    }
                     _this.style.left = x + 'px'
                     _this.style.top = y + 'px'
                 }
