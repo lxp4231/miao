@@ -54,15 +54,18 @@
         let box1 = container.querySelector('.box1')
         let box2 = container.querySelector('.box2')
         let box3 = container.querySelector('.box3')
-        dragMove(box1)
-        dragMove(box2)
-        dragMove(box3)
+        let num = 0
+        dragMove(box1, num)
+        dragMove(box2, num)
+        dragMove(box3, num)
             //box1,2,3初始坐标（x,y）
         let x = 0
         let y = 0
 
-        function dragMove(box) {
+        function dragMove(box, num = 0) {
             box.addEventListener('mousedown', function(e) {
+                this.style.zIndex = 200 + num //有bug
+                num++
                 //鼠标在盒子内的坐标
                 let markX = e.pageX - this.offsetLeft
                 let markY = e.pageY - this.offsetTop
