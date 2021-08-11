@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drag</title>
+</head>
+
+<body>
+    <style>
+        svg {
+            margin-left: 400px;
+            border: 1px solid #000;
+        }
+    </style>
+    <svg width='500' height='400'>
+        
+    </svg> 颜色：
+    <input type="color" id="setColor"> 粗细：
+    <button class="thin">-</button>
+    <span>2</span>
+    <button class="thick">+</button>
+    <script>
+        let svg = document.querySelector('svg')
+        let lastpos = null
+            //粗
+        let thick = document.querySelector('.thick')
+        let span = document.querySelector('span')
+            //细
+        let thin = document.querySelector('.thin')
+        document.addEventListener('mousedown', function(e) {
+            document.addEventListener('mousemove', fn)
+
+            function fn(e) {
+                let pos = mousePos(svg)
+                line = document.createElementNS("http://www.w3.org/2000/svg", 'line')
+
+                if (lastpos == null) {
+                    line.setAttribute('x1', pos.x)
+                    line.setAttribute('y1', pos.y)
+                } else {
+                    line.setAttribute('x1', lastpos.x)
+                    line.setAttribute('y1', lastpos.y)
+                }
+                line.setAttribute('x2', pos.x)
+                line.setAttribute('y2', pos.y)
+                line.setAttribute('stroke', 'red')
+                line.setAttribute('stroke-width', width)
+                lastpos = pos
+                    //添加
+                svg.appendChild(line)
+
+            }
+            document.addEventListener('mouseup', function(e) {
+                // target.removeEventListener()
+                document.removeEventListener('mousemove', fn)
+                lastpos = null
+            })
+
+        })
+
+        function mousePos(node) {
+            let box = node.getBoundingClientRect()
+            return {
+                x: window.event.clientX - box.x,
+                y: window.event.clientY - box.y
+            }
+        }
+        //撤销
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode == 17) {
+                document.addEventListener('keydown', function(e) {
+                    if (e.keyCode == 90) {
+                        svg.removeChild(svg.children[svg.children.length - 1])
+                    }
+                })
+
+            }
+        })
+
+        //粗细
+        let num = 2
+        let width = ''
+        thick.addEventListener('click', function() {
+            num++
+            span.innerHTML = num
+            width = span.innerHTML
+            line.setAttribute('stroke-width', num)
+        })
+        thin.addEventListener('click', function() {
+            num--
+            num = num < 2 ? 2 : num
+            span.innerHTML = num
+            line.setAttribute('stroke-width', `${num}px`)
+        })
+    </script>
+</body>
+
+</html>

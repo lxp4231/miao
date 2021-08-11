@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drag</title>
+</head>
+<style>
+    .container {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        background-color: #ebedef;
+    }
+    
+    .box1,
+    .box2,
+    .box3 {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border: 1px solid #000;
+    }
+    
+    .box1 {
+        top: 0;
+        left: 100px;
+        background-color: #3ca263;
+    }
+    
+    .box2 {
+        top: 50px;
+        background-color: #f0a70e;
+    }
+    
+    .box3 {
+        top: 100px;
+        left: 200px;
+        background-color: #f63c36;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+    </div>
+    <script>
+        let container = document.querySelector('.container')
+        let box1 = container.querySelector('.box1')
+        let box2 = container.querySelector('.box2')
+        let box3 = container.querySelector('.box3')
+        dragMove(box1)
+        dragMove(box2)
+        dragMove(box3)
+            //box1,2,3初始坐标（x,y）
+        let x = 0
+        let y = 0
+
+        function dragMove(box) {
+            box.addEventListener('mousedown', function(e) {
+                //鼠标在盒子内的坐标
+                let markX = e.pageX - this.offsetLeft
+                let markY = e.pageY - this.offsetTop
+                    //此处为document移动
+                document.addEventListener('mousemove', move)
+                let _this = this
+
+                function move(e) {
+                    // console.log(this);
+                    //盒子拖动后的坐标
+                    x = e.pageX - markX
+                    y = e.pageY - markY
+                    _this.style.left = x + 'px'
+                    _this.style.top = y + 'px'
+                }
+                //鼠标松开时
+                document.addEventListener('mouseup', function(e) {
+                    //移除鼠标移动
+                    document.removeEventListener('mousemove', move)
+                })
+            })
+        }
+    </script>
+</body>
+
+</html>
