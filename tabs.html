@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tab栏</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    ul li {
+        list-style: none;
+    }
+    
+    input {
+        outline: 0;
+        border-style: none;
+    }
+    
+    main {
+        width: 960px;
+        height: 500px;
+        border-radius: 10px;
+        margin: 50px auto;
+    }
+    
+    main h4 {
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+    }
+    
+    .tabsbox {
+        width: 900px;
+        margin: 0 auto;
+        height: 400px;
+        border: 1px solid #42a5f5;
+        position: relative;
+    }
+    
+    nav ul {
+        overflow: hidden;
+    }
+    
+    nav ul li {
+        float: left;
+        width: 100px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        border-right: 1px solid #ccc;
+        position: relative;
+    }
+    
+    nav ul li.liactive {
+        border-bottom: 2px solid #fff;
+        background-color: #fff;
+        z-index: 99;
+    }
+    
+    #tab input {
+        width: 80%;
+        height: 60%;
+    }
+    
+    nav ul li span:last-child {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 10px;
+        height: 10px;
+        line-height: 10px;
+        cursor: pointer;
+    }
+    
+    .tabadd {
+        position: absolute;
+        /* width: 100px; */
+        top: 0;
+        right: 0;
+    }
+    
+    .tabadd span {
+        display: block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border: 1px solid #ccc;
+        float: right;
+        margin: 10px;
+        font-size: 10px;
+    }
+    
+    .tabscon {
+        width: 100%;
+        height: 300px;
+        position: absolute;
+        padding: 30px;
+        top: 50px;
+        left: 0px;
+        box-sizing: border-box;
+        border-top: 1px solid #ccc;
+    }
+    
+    .tabscon section,
+    .tabscon section.conactive {
+        display: none;
+        width: 100%;
+        height: 100%;
+        user-select: none;
+    }
+    
+    .tabscon section.conactive {
+        display: block;
+    }
+</style>
+
+<body>
+    <main>
+        <h4>
+        </h4>
+        <div class="tabsbox" id="tab">
+            <!-- tab 标签 -->
+            <nav class="fisrstnav">
+                <ul>
+                    <li class="liactive"><span>双击更改</span><span class="icon-guanbi">×</span></li>
+                    <li><span>tab2</span><span class="icon-guanbi">×</span></li>
+                    <li><span>tab3</span><span class="icon-guanbi">×</span></li>
+                </ul>
+                <div class="tabadd">
+                    <span>添加</span>
+                </div>
+            </nav>
+
+            <!-- tab 内容 -->
+            <div class="tabscon">
+                <section class="conactive">天下事有难易乎？为之，则难者亦易矣；不为，则易者亦难矣。人之为学有难易乎？学之，则难者亦易矣；不学，则易者亦难矣。</section>
+                <section>　吾资之昏，不逮人也，吾材之庸，不逮人也；旦旦而学之，久而不怠焉，迄乎成，而亦不知其昏与庸也。</section>
+                <section>吾资之聪，倍人也，吾材之敏，倍人也；屏弃而不用，其与昏与庸无以异也。圣人之道，卒于鲁也传之。然则昏庸聪敏之用，岂有常哉？</section>
+            </div>
+        </div>
+    </main>
+    <script>
+        class Tab {
+            constructor(id) {
+                    this.main = document.querySelector(id)
+                    this.fisrstnav = this.main.querySelector('.fisrstnav')
+                    this.ul = this.main.querySelector('ul')
+                    this.tabadd = this.fisrstnav.querySelector('.tabadd')
+                    this.tabscon = this.main.querySelector('.tabscon')
+                    this.init()
+                }
+                //绑定
+            init() {
+                this.update()
+                this.tabadd.onclick = this.addTob.bind(this.tabadd, this)
+                for (var i = 0; i < this.lis.length; i++) {
+                    this.lis[i].index = i
+                    this.lis[i].onclick = this.toggleTob.bind(this.lis[i], this) //bind绑定,第二参数this指向constructor
+                    this.remove[i].onclick = this.removeTob.bind(this.remove[i], this)
+                    this.spans[i].ondblclick = this.edit
+                    this.sections[i].ondblclick = this.edit
+                }
+            }
+
+            //更新li、section、icon
+            update() {
+                this.lis = this.main.querySelectorAll('li')
+                this.sections = this.main.querySelectorAll('section')
+                this.remove = this.main.querySelectorAll('.icon-guanbi')
+                this.spans = this.main.querySelectorAll('.fisrstnav li span:first-child')
+            }
+
+            //切换时删除className //???
+            clearName() {
+                for (var i = 0; i < this.lis.length; i++) {
+                    this.lis[i].className = ''
+                    this.sections[i].className = ''
+                }
+            }
+
+            //切换
+            toggleTob(that) {
+                    //点击后删除
+                    that.clearName()
+                    this.className = 'liactive' //this指向li
+                    that.sections[this.index].className = 'conactive'
+                }
+                //添加
+            addTob(that) {
+                that.clearName() //添加的时候清除所有className//???
+                var li = '<li class="liactive"><span>新建</span><span class="icon-guanbi">×</span></li>'
+                that.ul.insertAdjacentHTML('beforeend', li)
+                var section = '<section class="conactive">新建内容</section>'
+                that.tabscon.insertAdjacentHTML('beforeend', section)
+                    //添加完之后再初始化一次???
+                that.init()
+            }
+
+            //删除
+            removeTob(that, e) {
+                    e.stopPropagation() //阻止冒泡???
+                    var index = this.parentNode.index
+                    that.lis[index].remove()
+                    that.sections[index].remove()
+                    that.init()
+                    if (document.querySelector('.liactive')) return
+                    index--
+                    that.lis[index].click()
+                }
+                //编辑
+            edit() {
+                var iptvalue = this.innerHTML
+                this.innerHTML = '<input type="text">'
+                var input = this.querySelector('input')
+                    // var input = this.children[0]
+                input.value = iptvalue
+                input.select()
+                input.onblur = function() {
+                    this.parentNode.innerHTML = this.value //??
+                }
+                input.onkeyup = function(e) {
+                    if (e.key == 'Enter') {
+                        this.parentNode.innerHTML = this.value
+                    }
+                }
+            }
+        }
+        new Tab('#tab')
+    </script>
+</body>
+
+</html>
