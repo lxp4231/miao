@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET</title>
+</head>
+<style>
+    .res {
+        width: 300px;
+        height: 300px;
+        border: 1px solid #000;
+    }
+</style>
+
+<body>
+    <button>btn</button>
+    <div class="res"></div>
+    <script>
+        let res = document.querySelector('.res')
+        let btn = document.querySelector('button')
+        btn.onclick = function() {
+            let xhr = new XMLHttpRequest()
+                //设置响应体数据类型
+                // xhr.responseType = 'json'
+            xhr.open('GET', 'http://localhost:8000/server?a=200&b=300') //在URL中设置参数
+                //设置请求头
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+                //Content-Type 设置请求体内容类型
+                //'application/x-www-form-urlencoded' 参数查询字符串类型
+            xhr.send()
+                //判断变换
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // console.log(xhr.status); //响应状态
+                        // console.log(xhr.statusText); //状态字符串
+                        // console.log(xhr.getAllResponseHeaders); //请求头
+                        console.log(xhr.response); //响应体
+                        res.innerHTML = xhr.response
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

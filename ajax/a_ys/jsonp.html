@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    用户名：<input type="text" id="username">
+    <p></p>
+    <script>
+        let p = document.querySelector('p')
+        let input = document.querySelector('input')
+
+        function handle(data) {
+            input.style.border = 'solid 1px #f00'
+            p.innerHTML = data.msg
+        }
+        //获取用户名是否存在
+        input.onblur = function() {
+            let username = this.value
+            let script = document.createElement('script')
+            script.src = "http://localhost:8000/jsonp-server"
+            document.body.appendChild(script)
+        }
+    </script>
+</body>
+
+</html>

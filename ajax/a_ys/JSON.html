@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+    <style>
+        .res {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="res"></div>
+    <script>
+        let res = document.querySelector('.res')
+
+        //设置标志变量(判断是否在发送请求)?????
+        let isSending = false
+        window.onkeydown = function() {
+            if (isSending) xhr.abort()
+            let xhr = new XMLHttpRequest()
+                //改为true，说明正在发送请求
+            isSending = true
+                //设置响应数据类型
+            xhr.responseType = 'json' //将JSON自动更改为字符串
+            xhr.open('POST', 'http://localhost:8000/json-server') //针对ie浏览器'http://localhost:8000/ie?t='+Date.now()'
+                //设置参数，post请求在send中设置参数
+            xhr.send('a=200&b=300')
+                //     //超时设置
+                // xhr.timeout = 3000;
+                // //超时回调
+                // xhr.ontimeout = function() {
+                //         alert('请求超时')
+                //     }
+                //     //网络异常
+                // xhr.timeout = 3000;
+                // //异常回调
+                // xhr.ontimeout = function() {
+                //         alert('请求异常')
+                //     }
+                // xhr.abort() //可设置取消请求
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    //发送请求完成后
+                    isSending = false
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        //法1：手动转换
+                        // let data = JSON.parse(xhr.response)
+                        // res.innerHTML = data.name 
+                        //法2：自动转换，设置xhr.responseType='json'
+                        res.innerHTML = xhr.response.name
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

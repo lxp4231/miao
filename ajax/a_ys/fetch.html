@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<button>fetch</button>
+
+<body>
+    <script>
+        let btn = document.querySelector('button')
+        btn.onclick = function() {
+                fetch('http://localhost:8000/fetch-server', { //参数直接写url后面
+                    method: 'post',
+                    //请求头
+                    // headers: { 
+                    //     name: 'liu'
+                    // },
+                    //请求体
+                    body: 'usernmae=admin&password=admin'
+                }).then(response => {
+                    return response.text() //返回响应体json形式
+                }).then(response => {
+                    console.log(response);
+                })
+            }
+            //获取结果
+            // then(response => { //使用then返回结果 
+            //         console.log(response);
+            //     })
+    </script>
+</body>
+
+</html>
