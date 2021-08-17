@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="note">
+        <select id="list"></select>
+        <button>add</button><br>
+        <textarea id="currentnote" style="width:300px;height:10em"></textarea>
+    </div>
+    <script>
+        //class
+        class Notes {
+            constructor(id) {
+                    this.div = document.querySelector(id)
+                    this.select = this.div.querySelector('#list')
+                    this.button = this.div.querySelector('button')
+                    this.textarea = this.div.querySelector('#currentnote')
+                    this.init()
+                    this.change(this)
+                }
+                //初始化添加
+            init() {
+                this.notes = JSON.parse(sessionStorage.getItem('notes')) || {
+                    'shopping': ''
+                }
+                for (let name in this.notes) {
+                    if (this.notes.hasOwnProperty(name)) {
+                        this.addToList(name, this)
+                    }
+                }
+                this.button.onclick = this.addNote.bind(this.button, this)
+            }
+            addToList(name) {
+                this.option = document.createElement('option')
+                this.select.appendChild(this.option)
+                this.option.innerHTML = name
+            }
+            addNote(that) {
+                    let name = prompt('输入name:')
+                    if (!name) return
+                        //
+                    if (!that.notes.hasOwnProperty(name)) {
+                        that.notes[name] = "" //先让其等于空，current变化后添加值???
+                        that.addToList(name)
+                    }
+                    //name已存在???
+                    that.select.value = name
+                    that.textarea.value = that.notes[name];
+                }
+                //监视current和list的变化
+            change(that) {
+                //取
+                this.select.addEventListener('change', function() {
+                        that.textarea.value = that.notes[that.select.value]
+                    })
+                    //存
+                this.textarea.addEventListener('change', function() {
+                    that.notes[that.select.value] = that.textarea.value
+                    sessionStorage.setItem('notes', JSON.stringify(that.notes)) //JSON形式
+                })
+            }
+        }
+        new Notes('#note')
+    </script>
+</body>
+
+</html>
