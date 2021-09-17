@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script>
+      //   //数据代理：一个对象可以操作另一个对象的属性
+      //   let obj = {
+      //     x: "lxp",
+      //   };
+      //   let obj2 = {
+      //     y: "yc",
+      //   };
+      //   Object.defineProperty(obj2, "name", {
+      //     get() {
+      //       return obj.x;
+      //     },
+      //     set(value) {
+      //       obj.x = value;
+      //     },
+      //   });
+      //   obj2.name = "yc";
+      //   console.log(obj2);
+      //   console.log(obj);
+      //数据代理：一个对象可以操作另一个对象的属性
+
+      //   let obj2 = {
+      //     y: "yc",
+      //     obj: {
+      //       x: "lxp",
+      //     },
+      //   };
+      //   Object.defineProperty(obj2, "name", {
+      //     get() {
+      //       return this.obj.x;
+      //     },
+      //     set(value) {
+      //       this.obj.x = value;
+      //     },
+      //   });
+      //   obj2.name = "qweert";
+      //   console.log(obj2);
+      //   console.log(obj2.obj);
+    </script> -->
+
+    <div class="root">
+      <h4 class="root">{{name}}</h4>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      //用vm代理_data(又因为_data和data一样，所以会改变data)
+      let vm = new Vue({
+        el: ".root",
+        data() {
+          //vm中的_data和此data属于同一个对象
+          return {
+            name: "liuxp123",
+          }
+        },
+      })
+      vm.name = "yuchuan1233"
+      vm._data.name = "ldihwevdhjk"
+      console.log(vm._data)
+    </script>
+  </body>
+</html>

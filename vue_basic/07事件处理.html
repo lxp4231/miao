@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <!-- v-on 绑定：简写：@ -->
+  <div class="root">
+    <!-- 点击事件click -->
+    <h4>hellow world: {{name}}</h4>
+    <!-- <button v-on:click="shot">点击</button> -->
+    <button @click="shot1">点击1</button>
+    <button @click="shot2(666,$event)">点击2</button>
+  </div>
+  <body>
+    <script>
+      //
+      Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示
+      new Vue({
+        el: ".root",
+        data: {
+          name: "yuccc",
+        },
+        methods: {
+          shot1() {
+            console.log(this)
+            //此处this指向vm
+            alert("hellow")
+          },
+          shot2(number, event) {
+            console.log(number)
+            console.log(event.target) //事件对象
+            // console.log(this); //此处this指向vm,不能使用箭头函数
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

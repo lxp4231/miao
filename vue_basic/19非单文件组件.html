@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 非单文件组件 -->
+    <div id="root">
+      <!-- 第3步 创建组件标签 -->
+      <school></school>
+      <hr />
+      <student></student>
+      <hr />
+      <hlo></hlo>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+
+      // <!-- 双标签写法 -->
+      // <!-- <school></school>-->
+      // <!-- 单标签写法(脚手架中)-->
+
+      // 定义一个全局的组件
+      // 第1步 定义
+      // const hello = Vue.extend({
+      //   data() {
+      //     return {
+      //       name: "tom",
+      //       age: 20,
+      //     }
+      //   },
+      //   template: `
+      //   <div>
+      //     <h4>{{name}}</h4>
+      //     <h4>{{age}}</h4>
+      //   </div>
+      //   `,
+      // })
+
+      // 第1步 定义的简写形式,直接写配置项
+      let hello = {
+        data() {
+          return {
+            name: "tom",
+            age: 20,
+          }
+        },
+        template: `
+        <div>
+          <h4>{{name}}</h4>
+          <h4>{{age}}</h4>
+        </div>
+        `,
+      }
+
+      // 定义一个全局的组件
+      // 第2步 注册
+      Vue.component("hlo", hello) //第一个标签名，第二个组件名
+
+      //创建组件
+      // 第1步 定义
+      const school = Vue.extend({
+        //data必须写成函数式（防止数据存在引用关系而互相干扰）
+        data() {
+          return {
+            name: "xcu",
+            address: "八一路",
+          }
+        },
+        template: `
+       <div>
+        <h4>{{name}}</h4>
+        <h4>{{address}}</h4>
+        <button @click="tip()">点击提示信息</button>
+       </div>
+        `,
+        methods: {
+          tip() {
+            alert("this is a tip")
+          },
+        },
+      })
+      const student = Vue.extend({
+        data() {
+          return {
+            name: "ly",
+            age: 18,
+          }
+        },
+        // template外面要包裹一个div(单节点)
+        template: `
+       <div>
+        <h4>{{name}}</h4>
+        <h4>{{age}}</h4>
+       </div>
+        `,
+      })
+
+      //  第2步.创建vm
+      let vm = new Vue({
+        el: "#root",
+        // 注册组件(局部组件)
+        components: {
+          school,
+          student,
+        },
+      })
+    </script>
+  </body>
+</html>

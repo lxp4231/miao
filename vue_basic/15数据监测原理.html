@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root">
+      <h4>name:{{name}}</h4>
+      <h4>address:{{address}}</h4>
+      <h4 v-if="student.sex">sex:{{student.sex}}</h4>
+      <div>
+        <h4>hobbies:</h4>
+        <ul>
+          <li v-for="k of student.hobbies">{{k}}</li>
+        </ul>
+      </div>
+      <h4>friends:{{student.name}}</h4>
+      <button @click="addSex()">点击添加</button>
+    </div>
+    <!--数据监视原理(vue监测数据改变原理(对象):利用get，set) -->
+    <!-- <script>
+      let data = {
+        name: "liuhsdoa",
+        address: "123.com",
+        student: {
+          name: "小王",
+          age: 18,
+        },
+      }
+      function Observe(obj) {
+        const keys = Object.keys(obj)
+        keys.forEach((k) => {
+          //this指向实例对象
+          Object.defineProperty(this, k, {
+            get() {
+              return obj[k]
+            },
+            set(val) {
+              console.log("改变了")
+              obj[k] = val
+            },
+          })
+        })
+      }
+      const obs = new Observe(data)
+      let vm = {}
+      vm = obs
+      vm.address = "www.bd"
+      console.log(vm)
+    </script> -->
+
+    <!--数据监视原理(vue监测数据改变原理(数组)) -->
+    <!-- Vue-set的使用(和vm.$set()一样) 注:不能直接在vm或_data中直接添加属性-->
+    <!-- <script>
+      Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示
+      let vm = new Vue({
+        el: "#root",
+        data: {
+          name: "liuhsdoa",
+          address: "123.com",
+          student: {
+            name: "小王",
+            age: 18,
+          },
+        },
+        methods: {
+          addSex() {
+            Vue.set(this.student, "sex", "男")
+          },
+        },
+      })
+      // Vue.set(vm._data.student, "sex", "男")
+      // vm.$set(vm.student, "sex", "女")
+    </script> -->
+    <!-- 数据监视原理(vue监测数据改变原理(数组))  
+    注：改变原数组时才能响应（push,unshift,shift,pop,sort,reverse,splice） 
+    也可以使用vm.$set()更改
+  -->
+    <script>
+      Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示
+      let vm = new Vue({
+        el: "#root",
+        data: {
+          name: "liuhsdoa",
+          address: "123.com",
+          student: {
+            name: "小王",
+            age: 18,
+            hobbies: ["play", "song", "dance", "write"],
+          },
+        },
+        methods: {
+          addSex() {
+            Vue.set(this.student, "sex", "男")
+          },
+        },
+      })
+      vm.$set(vm.student.hobbies, 1, "gan") //第二个参数为索引或者属性名
+    </script>
+
+    <!-- 综合案例 -->
+    <!-- <body>
+      <div id="root">
+        <h4>name:{{student.name}}</h4>
+        <h4>age:{{student.age}}</h4>
+        <h4>address:{{student.address}}</h4>
+        <h4 v-if="student.sex">sex:{{student.sex}}</h4>
+        <div>
+          <h4>hobbies:</h4>
+          <ul>
+            <li v-for="k of student.hobbies">{{k}}</li>
+          </ul>
+        </div>
+        <h4>friends:</h4>
+        <div>
+          <ul>
+            <li v-for="k of student.friends">name:{{k.name}}---age:{{k.age}}</li>
+          </ul>
+        </div>
+        <button @click="student.age++">age++</button>
+        <button @click="addFriend()">addFriend++</button>
+        <button @click="editFirstFn()">editFirstFn</button>
+        <button @click="addhob()">hobby++</button>
+        <button @click="addSex()">sex++</button>
+        <button @click="editHob()">editHob</button>
+      </div>
+      <script>
+        Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示
+        let vm = new Vue({
+          el: "#root",
+          data: {
+            student: {
+              name: "小王",
+              age: 18,
+              hobbies: ["play", "song", "dance", "write"],
+              address: "123.com",
+              friends: [
+                { name: "zhang", age: "20" },
+                { name: "liu", age: "20" },
+              ],
+            },
+          },
+          methods: {
+            addSex() {
+              Vue.set(this.student, "sex", "男") //修改对象的值
+            },
+            addFriend() {
+              this.student.friends.unshift({ name: "sunzi", age: "25" }) //修改数组的值
+            },
+            editFirstFn() {
+              // this.$set(this.student.friends[0], "name", "三") //修改数组的值
+              this.student.friends[0].name = "三" //只要是对象，就有set,get
+            },
+            addhob() {
+              this.student.hobbies.push("geam")
+            },
+            editHob() {
+              // this.student.hobbies.splice(0, 1, "sky") //为0插入，非零为替换个数
+              vm.$set(this.student.hobbies, 0, "sky") //Vue.set( target, propertyName/index, value )
+            },
+          },
+        })
+      </script>
+    </body> -->
+  </body>
+</html>

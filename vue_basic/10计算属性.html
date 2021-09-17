@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 实现姓名组合案例-->
+    <!-- 法1双向绑定 v-model -->
+    <!-- <div class="root">
+      <input type="text" v-model="name1" /><br /><br />
+      <input type="text" v-model="name2" /><br /><br />
+      <span>全名:{{name1}}-{{name2}}</span>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      new Vue({
+        el: ".root",
+        data: {
+          name1: "输入姓",
+          name2: "输入名",
+        },
+      }) -->
+
+    <!-- 法2 methods实现 -->
+    <!-- <div class="root">
+      <input type="text" v-model="firstname" placeholder="输入内容" /><br /><br />
+      <input type="text" v-model="lastname" placeholder="输入内容" /><br /><br />
+      <span>全名:{{fullname()}}</span>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      let vm = new Vue({
+        el: ".root",
+        data: {
+          firstname: "",
+          lastname: "",
+        },
+        methods: {
+          fullname() {
+            return this.firstname + "-" + this.lastname
+          },
+        },
+      })
+    </script> -->
+
+    <!-- 法3 计算属性实现 -->
+    <!-- <div class="root">
+      <input type="text" v-model="firstname" placeholder="输入内容" /><br /><br />
+      <input type="text" v-model="lastname" placeholder="输入内容" /><br /><br />
+      <span>全名:{{fullname}}</span>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      let vm = new Vue({
+        el: ".root",
+        //属性
+        data: {
+          firstname: "",
+          lastname: "",
+        },
+        // 计算属性(访问的值不存在时，用现有属性计算而来,靠返回值输出数据)
+        }
+        computed: {
+          
+          //完整写法
+          //   fullname: {
+          //     //当有访问fullname时，get被调用，返回值作为fullname得值
+          //     get() {
+          //       return this.firstname + "-" + this.lastname
+          //     },
+          //     set(value) {
+          //       //当fullname被修改时，set被调用
+          //       let res = value.split("-")
+          //       this.firstname = res[0]
+          //       this.lastname = res[1]
+          //     },
+          //   },
+
+          //简写形式(函数名就是计算属性的名：只考虑读取，不考虑修改时使用)
+          fullname() {
+            return this.firstname + "-" + this.lastname
+          },
+        },
+      })
+    </script> -->
+
+    <!-- 天气案例 -->
+    <div class="root">
+      <span>今天很{{whether}}</span><br /><br />
+      <button @click="change">切换</button
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      let isHot
+      let vm = new Vue({
+        el: ".root",
+        data: {
+          isHot: true,
+        },
+        methods: {
+          change() {
+            this.isHot = !this.isHot
+          },
+        },
+        computed: {
+          whether() {
+            return this.isHot ? "hot" : "cool"
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

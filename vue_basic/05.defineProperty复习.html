@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. writable，configurable，enumberable
+      //   let obj = {
+      //     name: "liu",
+      //   };
+      //   Object.defineProperty(obj, "age", {
+      //     value: 18,
+      //     writable: false, //是否能修改值
+      //     configurable: true, //是否能被删除
+      //     enumberable: false, //是否可枚举
+      //   });
+      //   console.log(Object.keys(obj)); //得到obj所有可枚举的key
+      //   console.log(obj);
+
+      //2.get,set
+      let obj = {
+        name: "liu",
+      }
+      //   let number = 25;
+      Object.defineProperty(obj, "age", {
+        get() {
+          return number //返回值就是属性值
+        },
+        set(value) {
+          console.log("修改了obj的age的值为：" + value)
+          number = value //设置属性值
+        },
+      })
+      obj.age = 30
+      console.log(obj)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content=" width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>指令</title>
+  </head>
+  <body>
+    <!-- 指令 -->
+    <!-- v-text会替换掉节点中的内容 -->
+    <!-- v-html 可以解析html标签 -->
+    <!-- v-clock vue介入后就被移除，配合css使用，没有值 -->
+    <!-- v-once  初次动态渲染后，所在标签的内容不再改变，没有值-->
+    <!-- v-pre  所在标签不解析，直接跳过-->
+    <!-- <div class="root">
+      <h4 v-text="name"></h4>
+      <div v-html="str"></div>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      // 指令
+      new Vue({
+        el: ".root",
+        data: {
+          name: "莱卡棉",
+          str: " <h4>sdfvxds</h4>",
+        },
+      })
+    </script> -->
+
+    <!-- 自定义指令  directives-->
+    <div class="root">
+      <h4 v-text="n"></h4>
+      <h4 v-big="n"></h4>
+      <button @click="n++">点击++</button><br /><br />
+      <input type="text" v-fbind:value="n" />
+    </div>
+    <script>
+      // big函数何时被调用：1，指令和元素成功绑定时2.指令所在的模板被重新解析时！！！！！！
+      Vue.config.productionTip = false
+
+      // // 定义了一个全局的big(函数式)
+      // Vue.directive("big", function (ele, b) {
+      //   //ele指big所在标签，b.value为v-big的值
+      //   // 自定义指令：函数式
+      //   ele.innerHTML = b.value * 2
+      // })
+
+      // // // 定义了一个全局的fbind(对象式)
+      // Vue.directive("fbind", {
+      //   //指定与元素成功绑定时调用
+      //   bind(ele, b) {
+      //     ele.value = b.value
+      //   },
+      //   // //绑定的元素插入页面时调用
+      //   inserted(ele, b) {
+      //     ele.focus()
+      //   },
+      //   // // 指令所在的模板被重新解析时
+      //   update(ele, b) {
+      //     ele.value = b.value
+      //     ele.focus()
+      //   },
+      // })
+
+      //
+      let vm = new Vue({
+        el: ".root",
+        data: {
+          n: 10,
+        },
+        directives: {
+          // ele指big所在标签，b.value为v-big的值
+          // 自定义指令：函数式
+          big(ele, b) {
+            ele.innerHTML = b.value * 2
+          },
+          // 自定义指令：对象式
+          // 自定义指令中的this都指向window，且是局部指令，指令名不能使用驼峰命名，用个单词用-分割
+          fbind: {
+            //指定与元素成功绑定时调用
+            bind(ele, b) {
+              ele.value = b.value
+            },
+            // //绑定的元素插入页面时调用
+            inserted(ele, b) {
+              ele.focus()
+            },
+            // // 指令所在的模板被重新解析时
+            update(ele, b) {
+              ele.value = b.value
+              ele.focus()
+            },
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 监视属性 -->
+    <!-- <div class="root">
+      <span>今天很{{whether}}</span><br /><br />
+      <button @click="change">切换</button>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      let isHot
+      let vm = new Vue({
+        el: ".root",
+        data: {
+          isHot: true,
+        },
+        methods: {
+          change() {
+            this.isHot = !this.isHot
+          },
+        },
+        //计算属性
+        computed: {
+          whether() {
+            return this.isHot ? "hot" : "cool"
+          },
+        },
+        //监视属性(data属性，computed属性等)
+        watch: {
+          isHot: {
+            immediate: true, //默认为false,立即执行
+            handler(newvalue, oldvalue) {
+              console.log("isHot被修改", newvalue, oldvalue)
+            },
+          },
+        },
+      })
+      // // 监视属性的另一种写法
+      // vm.$watch("isHot", {
+      //   immediate: true, //默认为false,立即执行
+      //   handler(newvalue, oldvalue) {
+      //     console.log("isHot被修改", newvalue, oldvalue)
+      //   },
+      // })
+
+      
+      //简写
+        // vm.$watch("isHot", function(newvalue, oldvalue){
+        // console.log("isHot被修改", newvalue, oldvalue)
+        //}
+        // })
+    </script> -->
+
+    <!-- 深度监视 -->
+    <!-- <div class="root">
+      <span>今天很{{whether}}</span><br /><br />
+      <button @click="change">切换</button>
+      <hr />
+      <div>{{number.a}}</div>
+      <button @click="number.a++">a加加</button>
+      <div>{{number.b}}</div>
+      <button @click="number.b++">b加加</button>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      let isHot
+      let vm = new Vue({
+        el: ".root",
+        data: {
+          isHot: true,
+          number: {
+            a: 1,
+            b: 1,
+          },
+        },
+        methods: {
+          change() {
+            this.isHot = !this.isHot
+          },
+        },
+        //计算属性
+        computed: {
+          whether() {
+            return this.isHot ? "hot" : "cool"
+          },
+        },
+        //监视属性(data属性，computed属性等)
+        watch: {
+          // "number.a": {
+          //   deep: true,
+          //   handler(newValue, oldValue) {
+          //     console.log("a改变了", newValue, oldValue)
+          //   },
+          // },
+          number: {
+            deep: true, //深度监视,deep默认为false
+            handler(newValue, oldValue) {
+              console.log("number改变了", newValue, oldValue)
+            },
+          },
+        },
+      })
+    </script> -->
+
+    <!-- 监视属性，写姓名案例 -->
+    <div class="root">
+      <input type="text" v-model="firstname" placeholder="输入内容" /><br /><br />
+      <input type="text" v-model="lastname" placeholder="输入内容" /><br /><br />
+      <span>全名:{{fullname}}</span>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      let vm = new Vue({
+        el: ".root",
+        data: {
+          firstname: "",
+          lastname: "",
+          fullname: "",
+        },
+        watch: {
+          firstname(value) {
+            this.fullname = value + "-" + this.lastname
+          },
+          lastname(value) {
+            this.fullname = this.firstname + "-" + value
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

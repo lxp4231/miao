@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <school></school>
+    </div>
+
+    <script>
+      //一个重要的内置关系:VueComponent.prototype.__proto__===Vue.prototype
+      //vm 和vc(VueComponent)的区别，
+      // 1.vm中有el，vc中没有，2.vc中的data必须是一个函数 3.VueComponent相当于小型vm
+      Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示
+      let school = Vue.extend({
+        //此处school是构造函数，当有<school></school>时才new有个实例
+        data() {
+          return {
+            name: "lsf",
+            address: "bayidonglu",
+          }
+        },
+        template: `
+        <div>
+          <h4>{{name}}</h4>
+          <h4>{{address}}</h4>
+        </div>
+          `,
+      })
+      let vm = new Vue({
+        el: "#root",
+        components: {
+          school,
+        },
+      })
+      Vue.prototype.x = 99
+      console.log(Vue)
+      console.log(Vue.x) //undefined ,因为Vue是构造函数，方法添加在原型上，自身没有，实例可以访问到
+      console.log(vm.x) //99 实例
+      //
+      console.log(school.x) //undefined,因为school是构造函数
+      console.log(school.prototype.x) //99
+      console.log(school.prototype.__proto__.x) //99
+    </script>
+  </body>
+</html>

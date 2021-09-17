@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <div class="root"> -->
+
+    <!-- 人员列表(遍历数组)-->
+    <!-- <ul> -->
+    <!-- key最好不用index索引作为值，用唯一标识符：id -->
+    <!-- <li v-for="(p,k) of persons" :key="p.id">
+          {{p.name}}: {{p.age}}
+          <input type="text" />
+        </li> -->
+    <!-- </ul> -->
+    <!-- <button @click="add()">点击添加</button> -->
+    <!-- </div> -->
+    <!-- <script>
+      Vue.config.productionTip = false
+      new Vue({
+        el: ".root",
+        data: {
+          persons: [
+            { id: 1, name: "yuchuan", age: 18 },
+            { id: 2, name: "sunzilp", age: 19 },
+            { id: 3, name: "lixlp", age: 20 },
+          ],
+          car: {
+            name: "dazhong",
+            price: "123",
+            color: "black",
+          },
+        },
+        methods: {
+          add() {
+            let p = { id: 4, name: "sdkf", age: 30 }
+            this.persons.unshift(p)
+          },
+        },
+      })
+    </script> -->
+
+    <!--例:列表过滤（用watch实现） -->
+    <!-- <div class="root">
+      <input type="text" v-model="keyword" />
+      <ul>
+        <li v-for="(p,k) of filpersons" :key="p.id">{{p.name}}: {{p.age}}</li>
+      </ul>
+      <button @click="add()">点击添加</button>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      new Vue({
+        el: ".root",
+        data: {
+          keyword: "",
+          persons: [
+            { id: 001, name: "马东", age: 18 },
+            { id: 002, name: "周东学", age: 19 },
+            { id: 003, name: "周伦", age: 25 },
+            { id: 004, name: "问技伦", age: 20 },
+          ],
+          filpersons: [],
+        },
+        watch: {
+          keyword: {
+            immediate: true, //配置项立即执行，不等handler回调
+            handler(val) {
+              this.filpersons = this.persons.filter((res) => {
+                return res.name.includes(val) //filter过滤，返回一个新数组
+              })
+            },
+          },
+        },
+      })
+    </script> -->
+
+    <!--例:列表过滤（用computed计算属性实现） -->
+    <!-- <div class="root">
+      <input type="text" v-model="keyword" />
+      <ul>
+        <li v-for="(p,k) of filpersons" :key="p.id">{{p.name}}: {{p.age}}</li>
+      </ul>
+      <button @click="add()">点击添加</button>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      new Vue({
+        el: ".root",
+        data: {
+          keyword: "",
+          persons: [
+            { id: 001, name: "马东", age: 18 },
+            { id: 002, name: "周东学", age: 19 },
+            { id: 003, name: "周伦", age: 25 },
+            { id: 004, name: "问技伦", age: 20 },
+          ],
+        },
+        computed: {
+          filpersons() {
+            return this.persons.filter((res) => {
+              return res.name.includes(this.keyword) //filter过滤，返回一个新数组
+            })
+          },
+        },
+      })
+    </script> -->
+
+    <!-- 列表排序 -->
+    <div class="root">
+      <input type="text" v-model="keyword" />
+      <button @click="sortType=1">按年龄升序</button>
+      <button @click="sortType=2">按年龄降序</button>
+      <button @click="sortType=0">默认</button>
+      <ul>
+        <li v-for="(p,k) of filpersons" :key="p.id">{{p.name}}: {{p.age}}</li>
+      </ul>
+    </div>
+    <script>
+      Vue.config.productionTip = false
+      new Vue({
+        el: ".root",
+        data: {
+          keyword: "",
+          persons: [
+            { id: 001, name: "马东", age: 50 },
+            { id: 002, name: "周东学", age: 45 },
+            { id: 003, name: "周伦", age: 15 },
+            { id: 004, name: "问技伦", age: 20 },
+          ],
+          sortType: 0,
+        },
+        computed: {
+          //filpersons是属性，不是函数名
+          filpersons() {
+            let arr = this.persons.filter((res) => {
+              //filter过滤，返回一个新数组,this.keyword为空时，返回全部persons值
+              return res.name.includes(this.keyword)
+            })
+            if (this.sortType) {
+              arr.sort((a, b) => {
+                return this.sortType == 1 ? a.age - b.age : b.age - a.age
+              })
+            }
+            return arr
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

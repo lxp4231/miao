@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content=" width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>v</title>
+  </head>
+  <body>
+    <div class="root">
+      <!-- 单项数据绑定（v-bind和v-model默认绑定value值）
+      <input type="text" v-bind:value="name1" /><br />
+      <!-- 双向数据绑定 v-model:value可简写为：v-model -->
+      <!-- <input type="text" v-model:value="name2" /> -->
+
+      <!-- 简写形式 -->
+      <input type="text" :value="name1" /><br />
+      <input type="text" v-model="name2" />
+    </div>
+    <script>
+      Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示。
+      // 指令
+      new Vue({
+        el: ".root",
+        data: {
+          name1: "输入内容",
+          name2: "输入内容",
+        },
+      })
+    </script>
+  </body>
+</html>

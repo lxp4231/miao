@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <div class="root">
+    <!-- <div class="root" v-show="a">qwewdssd</div> -->
+    <h4>{{n}}</h4>
+    <button @click="n++">点击</button>
+    <div v-show="n==1">1</div>
+    <div v-show="n==2">2</div>
+    <div v-show="n==3">3</div>
+    <!-- template只能配合v-if -->
+    <template v-if="n==4">
+      <div>js</div>
+      <div>html</div>
+      <div>vue</div>
+    </template>
+  </div>
+  <body>
+    <script>
+      // v-if会删除元素，v-show不会（较频繁时使用较好）
+      Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示
+      new Vue({
+        el: ".root",
+        data: {
+          n: "",
+        },
+      })
+    </script>
+  </body>
+</html>

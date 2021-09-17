@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <form @submit.prevent="demo()">
+        <!-- trim修饰符 去掉两边空格 -->
+        账号：<input type="text" v-model="a" /><br /><br />
+        密码：<input type="password" v-model="password" /><br /><br />
+
+        <!-- v-model.number="age" 表示拿到的是一个数字，type="number"保证输入的是一个数字 number修饰符 -->
+        年龄：<input type="number" v-model.number="age" /><br /><br />
+        性别：男<input type="radio" name="sex" v-model="sex" value="male" /> 女
+        <input type="radio" name="sex" value="famale" v-model="sex" /><br /><br />
+        爱好：<input type="checkbox" v-model="hobby" value="eat" />吃
+        <input type="checkbox" v-model="hobby" value="dreak" />喝
+        <input type="checkbox" v-model="hobby" value="play" />玩<br /><br />
+        地区：<select v-model="city">
+          <option>选择地区</option>
+          <option>杭州</option>
+          <option>北京</option>
+          <option>郑州</option></select
+        ><br /><br />
+        其他信息：<textarea v-model.lazy="text"></textarea><br /><br />
+
+        <!-- 修饰符lazy，失去焦点时收集信息 -->
+        <input type="checkbox" v-model="agree" /><a href="javascript:;">遵守用户协议</a
+        ><br /><br />
+        <button>提交</button>
+      </form>
+
+      <!-- 过滤器 -->
+      <!-- 手写实现 -->
+      手写实现date：<span>{{format}}</span><br /><br />
+      <!-- vue 过滤器实现 -->
+      过滤器实现data:<span>{{date|timeFormat}}</span><br /><br />
+      全局data:<span>{{str|filters}}</span>
+    </div>
+    <script>
+      Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示
+      //全局过滤器
+      Vue.filter("filters", function (value) {
+        return value.slice(0, 4)
+      })
+      let vm = new Vue({
+        el: "#root",
+        data: {
+          a: "",
+          password: "",
+          age: "",
+          sex: "male",
+          hobby: [], //多个复选框，用数组接收
+          city: "",
+          text: "",
+          agree: "",
+          date: new Date(),
+          str: "asdfd",
+        },
+        methods: {
+          demo() {
+            console.log(JSON.stringify(this._data)) //收集到所有信息
+          },
+        },
+        computed: {
+          //计算属性
+          format() {
+            //是属性，不是函数，添加了一个format,值为返回值
+            let dt = new Date(this.date)
+            const y = dt.getFullYear()
+            const m = padZero(dt.getMonth())
+            const d = padZero(dt.getDate())
+            const h = padZero(dt.getHours())
+            const mt = padZero(dt.getMinutes())
+            const s = padZero(dt.getSeconds())
+            return `${y}-${m}-${d} ${h}:${mt}:${s}`
+            // 定义补零的函数
+            function padZero(n) {
+              return n > 10 ? n : "0" + n
+            }
+          },
+        },
+        filters: {
+          //过滤器
+          timeFormat(val) {
+            //是属性，不是函数，添加了一个format,值为返回值
+            let dt = new Date(val)
+            const y = dt.getFullYear()
+            const m = padZero(dt.getMonth())
+            const d = padZero(dt.getDate())
+            const h = padZero(dt.getHours())
+            const mt = padZero(dt.getMinutes())
+            const s = padZero(dt.getSeconds())
+            return `${y}-${m}-${d} ${h}:${mt}:${s}`
+            // 定义补零的函数
+            function padZero(n) {
+              return n > 10 ? n : "0" + n
+            }
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

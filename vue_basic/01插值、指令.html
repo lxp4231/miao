@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content=" width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>v</title>
+  </head>
+  <body>
+    <div class="root1">
+      <h4>hollow,{{name}}</h4>
+      <h4>{{schol.name}}</h4>
+      <h4>{{schol.age}}</h4>
+    </div>
+    <hr />
+    <div class="root2">
+      <h4>
+        <a v-bind:href="url">搜一搜</a>
+        <!-- v-bind简写为： -->
+        <a :href="url2">买啦</a>
+      </h4>
+    </div>
+
+    <script>
+      Vue.config.productionTip = false; //以阻止 vue 在启动时生成生产提示。
+      //插值
+      new Vue({
+        el: ".root1", //el用于指定当前Vue实例为哪个对象服务
+        //用于存储数据，供el所指定的容器使用
+        data: {
+          name: "xiaoming",
+          schol: {
+            name: "sgg",
+            age: 18,
+          },
+        },
+      });
+      // 指令
+      new Vue({
+        el: ".root2", //el用于指定当前Vue实例为哪个对象服务
+        //用于存储数据，供el所指定的容器使用
+        data: {
+          url: "http://www.baidu.com",
+          url2: "http://www.jd.com",
+        },
+      });
+    </script>
+  </body>
+</html>

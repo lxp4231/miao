@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 组件嵌套 -->
+    <!--标签在哪注册，写在哪 -->
+    <!-- <div id="root">
+      <!-- app的标签可以写在template中 -->
+      <app></app>
+    </div>
+    <script>
+      // 注册组件
+      Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示
+      //定义子组件
+      let student = Vue.extend({
+        data() {
+          return {
+            name: "sunzy",
+            age: 22,
+          }
+        },
+        template: `
+        <div>
+          <h4>学生姓名:{{name}}</h4>
+          <h4>年龄:{{age}}</h4>
+        </div>
+        `,
+      })
+      //定义父组件
+      let school = Vue.extend({
+        data() {
+          return {
+            name: "xcuniversity",
+            address: "bayi",
+          }
+        },
+        template: `
+        <div>
+          <h4>学校名:{{name}}</h4>
+          <h4>地址:{{address}}</h4>
+          <student></student>
+        </div>
+        `,
+        // 注册子组件(此时子组件应该已经定义好)
+        components: {
+          student,
+        },
+      })
+      //注册一个组件和school平级
+      let hello = Vue.extend({
+        data() {
+          return {
+            msg: "hello ni hao ",
+          }
+        },
+        template: `
+        <h3>{{msg}}</h3>
+        `,
+      })
+      // 定义一个app管理组件(标准化开发要求)
+      let app = Vue.extend({
+        template: `
+        <div>
+          <hello> </hello>
+          <school> </school>
+        </div>
+        `,
+        components: {
+          school,
+          hello,
+        },
+      })
+      //注册组件
+      new Vue({
+        el: "#root",
+        components: {
+          app,
+        },
+      })
+    </script> -->
+
+    <!--VueComponent-->
+    <div id="root">
+      <student></student>
+    </div>
+    <script>
+      Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示
+      //定义子组件
+      let student = Vue.extend({
+        // 每次调用Vue.extend，返回的都是一个全新的VueComponent
+        //里面的内容就是配置项 VueComponent
+        data() {
+          return {
+            name: "sunzy",
+            age: 22,
+          }
+        },
+        methods: {
+          showName() {
+            console.log(this) //这里的this指向VueComponent实例对象，不是vue实例对象
+          },
+        },
+        template: `
+        <div>
+          <h4>"name":{{name}}</h4>
+          <h4>"age":{{age}}</h4>
+          <button @click="showName">点击</button>
+        </div>
+        `,
+      })
+      let vm = new Vue({
+        el: "#root",
+        components: {
+          student,
+        },
+      })
+      console.log(vm)
+    </script>
+  </body>
+</html>

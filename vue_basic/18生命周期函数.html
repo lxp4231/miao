@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content=" width=device-width, initial-scale=1.0" />
+    <script src="./js/vue.js"></script>
+    <title>周期</title>
+  </head>
+  <body>
+    <!-- :style="{opacity}"一组的形式写成对象 -->
+    <div class="root">
+      <h4 :style="{opacity}">变化的文字</h4>
+      <button @click="stop">点击取消变化</button>
+    </div>
+    <script>
+      //生命周期函数(生命周期钩子)
+      Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示
+      new Vue({
+        el: ".root",
+        data: {
+          opacity: 1,
+        },
+        methods: {
+          stop() {
+            this.$destroy()
+          },
+        },
+        mounted() {
+          //vue完成模板的解析并把初始的真实的DOM元素放入页面后（挂载完毕），调用mounted,只调用一次
+          //此处使用箭头函数
+          this.timer = setInterval(() => {
+            console.log("1")
+            this.opacity -= 0.1
+            if (this.opacity <= 0) {
+              this.opacity = 1
+            }
+          }, 100)
+        },
+        beforeDestroy() {
+          clearInterval(this.timer)
+          console.log("sss")
+        },
+      })
+    </script>
+
+    <!-- 挂载流程 -->
+    <!-- 
+    <div id="root">
+      <h4>当前值为：{{n}}</h4>
+      <button @click="add()">点击++</button>
+      <button @click="bey()">点击销毁</button>
+    </div>
+    <script>
+      // beforeCreate: 初始化前
+      // created: 初始化之后
+      // beforeMount: 渲染DOM前
+      // mounted: 渲染DOM后
+      // beforeUpdate: 更新数据前
+      // updated: 更新数据后
+      // beforeDestroy: 写在组件前(数据能访问，修改数据但不更新)
+      // destroy: 卸载组件后()
+      Vue.config.productionTip = false //以阻止 vue 在启动时生成生产提示
+      let vm = new Vue({
+        // el: "#root",
+        data: {
+          n: 0,
+          a: "sdk",
+          b: "lml",
+        },
+        watch: {
+          n() {
+            console.log("n变了") //
+          },
+        },
+        methods: {
+          add() {
+            console.log("add++", this.n)
+            this.n++
+          },
+          bey() {
+            console.log("destroy")
+            //完全销毁一个实例，清理与其它实例的连接，解绑它的全部指令及事件监听(此处指自定义事件)
+            // 绑定的事件不被销毁(属于原生DOM事件)
+            this.$destroy() //自我销毁，实际很少用
+          },
+        },
+        beforeCreate() {
+          console.log("beforeCreate") //初始化之前(数据监测和数据代理之前)
+        },
+        created() {
+          console.log("created") //初始化之后
+        },
+        beforeMount() {
+          console.log("beforeMount")
+        },
+        mounted() {
+          console.log("mounted")
+        },
+        beforeUpdate() {
+          console.log("beforeUpdate")
+        },
+        updated() {
+          console.log("updated")
+          // this.n = 99
+        },
+        beforeDestroy() {
+          console.log("beforeDestroy") //此处对数据的修改不会触发更新
+        },
+        destroyed() {
+          console.log("destroyed")
+        },
+      })
+      vm.$mount("#root")
+    </script> -->
+  </body>
+</html>
