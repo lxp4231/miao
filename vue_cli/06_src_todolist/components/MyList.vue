@@ -2,7 +2,9 @@
     <ul class="todo-main">
         <!-- 需要加key,并且值为todo中的id,利用props传递数据，即todos前要加：表示绑定数据，加冒号todos才是表达式-->
         <!-- keyde作用是让vue复用之前的数据 -->
-        <MyItem v-for="todo in todos" :key="todo.id" :todos="todo" />
+        <transition-group name="todo" appear>
+            <MyItem v-for="todo in todos" :key="todo.id" :todos="todo" />
+        </transition-group>
     </ul>
 </template>
 
@@ -34,5 +36,19 @@ export default {
     border-radius: 2px;
     padding-left: 5px;
     margin-top: 10px;
+}
+.todo-enter-active {
+    animation: at 0.5s linear;
+}
+.todo-leave-active {
+    animation: at 0.5s linear reverse;
+}
+@keyframes at {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 </style>

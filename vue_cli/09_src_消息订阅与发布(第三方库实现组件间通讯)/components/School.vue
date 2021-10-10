@@ -20,6 +20,8 @@ export default {
         this.pubId = pubsub.subscribe("hello", (name, value) => {
             //写成箭头函数，或者回调写到methods中
             //接收两个参数，消息名、消息值
+            // name 是事件名（hello），value订阅消息值
+            console.log(name);
             console.log("订阅成功", value, this.name);
         });
     },

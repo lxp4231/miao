@@ -51,7 +51,17 @@ export default {
     methods: {
         //添加todo
         addTodo(n) {
-            this.todos.unshift(n);
+            // 先判断是否已经添加
+            let x = true;
+            this.todos.forEach((item) => {
+                if (item.title == n.title) {
+                    x = false;
+                    alert("该项已经添加，请重新填写");
+                }
+            });
+            if (x) {
+                this.todos.unshift(n);
+            }
         },
         //勾选或取消todo
         checkTodo(id) {

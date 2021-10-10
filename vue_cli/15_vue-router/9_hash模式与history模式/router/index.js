@@ -9,7 +9,7 @@ import Message from "../pages/Message"
 import Detail from "../pages/Detail"
 // 创建并暴露一个路由器
 const router = new VueRouter({
-  // 路由器两种工作模式
+  // 路由器两种工作模式!!!!!!
   mode: "history", //切换到history模式
   // mode: "hash", //切换到hash模式(默认)
 

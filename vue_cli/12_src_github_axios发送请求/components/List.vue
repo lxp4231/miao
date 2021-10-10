@@ -38,7 +38,7 @@ export default {
         this.$bus.$on("updateListData", (dataObj) => {
             // isFirst, isLoading, errMsg, data //写成对象dataObj形式，语义化
             // ES6对象解构！！！
-            this.info = { ...this.info, ...dataObj };
+            this.info = { ...this.info, ...dataObj }; //存在同类名时dataObj会替代前面的数据
         });
     },
 };

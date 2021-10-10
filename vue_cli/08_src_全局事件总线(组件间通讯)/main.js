@@ -20,6 +20,6 @@ new Vue({
     Vue.prototype.$bus = this //安装全局事件总线
   },
   // render用来解析组件
-  render: (h) => h(App),
+  render: h => h(App),
 })
 // 全局事件总线可以实现父到子，兄弟之间，子到父的数据传递

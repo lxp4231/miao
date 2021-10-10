@@ -15,6 +15,7 @@
                 @blur="handlerblur(todos, $event)"
                 @keydown.enter="handlerblur(todos, $event)"
                 ref="ipt"
+                style="outline: none; border: 0"
             />
         </label>
         <button class="btn btn-danger" @click="del(todos.id)">删除</button>
@@ -47,6 +48,7 @@ export default {
                 // this.deleteTodo(id);
             }
         },
+        // 编辑
         edit(todos) {
             // 给todos添加一个属性idEdit,点击编辑后为true
             // todos.isEdit = true; //直接添加不收监视,用Vue.$set
@@ -54,10 +56,11 @@ export default {
             this.$set(todos, "isEdit", true); //this指向vue
             // this.$refs.ipt.focus();//不能立即触发，vue要执行完回调再执行，此时没有input,处于隐藏状态，使用$nextTick
             this.$nextTick(() => {
-                //下一个DOM更新结束后再执行回调
+                //DOM更新结束后再执行回调
                 this.$refs.ipt.focus();
             });
         },
+        //失去焦点时添加
         handlerblur(todos, e) {
             this.todos.isEdit = false;
             if (!e.target.value.trim()) return alert("输入不能为空");

@@ -9,8 +9,11 @@
 export default {
     name: "Detail",
     // mounted() {
-    //     console.log(this.$route);
+    //     console.log(this.$route)
     // },
+    mounted() {
+        console.log(this.$route);
+    },
 };
 </script>
 

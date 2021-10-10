@@ -12,7 +12,7 @@ export default {
     beforeRouteEnter(to, from, next) {
         // 可以在这验证权限
         if (to.meta.isAuth) {
-            if (localStorage.getItem("school") == "liuxp") {
+            if (localStorage.getItem("school") == "liuxp1") {
                 next();
             }
             //加权限限制
@@ -22,10 +22,11 @@ export default {
         } else {
             next();
         }
+        console.log(to);
     },
     //通过路由规则，离开组件时被调用
     beforeRouteLeave(to, from, next) {
-        console.log("离开组件");
+        console.log(to);
         next();
     },
 };

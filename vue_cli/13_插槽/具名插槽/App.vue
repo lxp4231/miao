@@ -2,7 +2,7 @@
     <div class="container">
         <!-- 三个组件相互独立 -->
         <Category title="foods">
-            <!-- slot属性，告诉往哪个插槽放 -->
+            <!-- slot属性，告诉往哪个插槽放(不指定，三个都被替换)-->
             <img
                 slot="center"
                 src="https://dimg04.c-ctrip.com/images/200l0w000000kqos68EA1_R_300_225_R5_Q70_D.jpg"
@@ -31,7 +31,7 @@
         <Category title="films">
             <!--  controls:允许用户控制视频的播放 -->
             <video src="" controls slot="center"></video>
-            <!-- 可以使用v-slot:center(仅适用于template) -->
+            <!-- 可以使用v-slot:center(仅适用于template包裹的时候) -->
             <template slot="center">
                 <div class="footer">
                     <a href="http://www.baidu.com">更多</a>
@@ -53,9 +53,6 @@ export default {
             games: ["GTA5", "PUBG", "bigma", "qqcar"],
             films: ["nihai!ying", "guigu", "chai", "father"],
         };
-    },
-    components: {
-        Category,
     },
 };
 </script>

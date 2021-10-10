@@ -1,9 +1,10 @@
 <template>
     <div class="container">
-        <!-- 作用域插槽，在组件标签中加template标签，并且加scope="atgui"属性，atgui会接到数据，在template中加要写的内容 -->
+        <!-- 作用域插槽，在组件标签中加template标签，在template中加要写的内容 -->
+        <!-- 使用场景：当数据不在这，又要使用数据，所以作用域插槽从组件中拿到数据 -->
         <Category title="games">
             <!-- v-slot接过来的是一个对象，可以用解构 -->
-            <!--此处template：使用 scope="{ games }也可(已被废弃) -->
+            <!--此处必须加template包裹：使用 scope="{ games }也可(已被废弃) -->
             <!-- 如果是指定插槽用v-slot:center(指定加到哪个插槽里，不加引号，v-slot="{ games }"用于接收数据),注意区分 -->
             <template v-slot="{ games }">
                 <ul>

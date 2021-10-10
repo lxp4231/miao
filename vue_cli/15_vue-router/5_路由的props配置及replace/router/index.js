@@ -45,7 +45,7 @@ export default new VueRouter({
               //   return { id: $route.params.id, title: $route.params.title } //以props的形式传给datail
               // },
 
-              // 直接解构
+              // 直接解构(参数都在$route中且为一个对象，直接解构)
               props({ params }) {
                 //参数为$route，
                 return {
@@ -53,6 +53,7 @@ export default new VueRouter({
                   title: params.title,
                 }
               },
+              //
             },
           ],
         },

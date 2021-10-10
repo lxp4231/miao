@@ -21,7 +21,7 @@
                 </li>
             </ul>
             <!-- 组件展示区 -->
-            <!-- keep-alive缓存路由器组件，使用include(组件名)指明缓存的是那个，不写则router-view中的组件都缓存 -->
+            <!-- keep-alive缓存路由器组件(不缓存则被销毁)，使用include(组件名)指明缓存的是那个，不写则router-view中的组件都缓存 -->
             <!--缓存多个逗号隔开 或写成数组绑定形式： :include="['News', 'Message']" -->
             <keep-alive include="News">
                 <router-view> </router-view>

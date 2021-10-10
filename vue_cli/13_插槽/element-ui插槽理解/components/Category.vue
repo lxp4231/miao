@@ -1,0 +1,31 @@
+<template>
+    <div class="Category">
+        <h4>{{ foods }}分类</h4>
+        <!-- 组件标签存放位置 -->
+        <slot name="center">默认值，当组件标签有传入时不显示</slot>
+        <slot name="footer"></slot>
+        <div>插槽插槽</div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: "Category",
+    data() {
+        return {};
+    },
+    props: ["title", "foods"],
+};
+</script>
+
+<style>
+.Category {
+    background-color: skyblue;
+    width: 200px;
+    height: 300px;
+}
+h4 {
+    text-align: center;
+    background-color: orange;
+}
+</style>

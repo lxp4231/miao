@@ -27,16 +27,16 @@
 </template>
 
 <script>
-import News from "./News";
-import Message from "./Message";
+// import News from "./News";
+// import Message from "./Message";
 export default {
     name: "Home",
     data() {
         return {};
     },
     components: {
-        News,
-        Message,
+        // News,
+        // Message,
     },
     methods: {},
     computed: {},

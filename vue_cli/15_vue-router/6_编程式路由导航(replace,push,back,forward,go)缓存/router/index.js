@@ -33,18 +33,6 @@ export default new VueRouter({
               path: "detail/:id/:title", //占位符
               component: Detail,
 
-              //props的第一种写法(值为对象，不推荐)，该对象的值都会以props的形式传给detail组件
-              // props: { a: "666", b: "study" },
-
-              // props的第二种写法（只针对params传参）：props值为Boolean值，为true时，会把此路由收到的所有params参数以props的形式传给detail
-              // props: true,
-
-              // props的第三种写法：函数式(最强大)
-              // props($route) {
-              //   //参数为$route//以props的形式传给datail
-              //   return { id: $route.params.id, title: $route.params.title } //以props的形式传给datail
-              // },
-
               // 直接解构
               props({ params }) {
                 //自动会传参为$route，

@@ -3,7 +3,7 @@
 import Vue from "vue"
 //引入App
 import App from "./App.vue"
-//引入vue-router
+//引入vue-router插件
 import VueRouter from "vue-router"
 // 使用vue-router
 Vue.use(VueRouter)

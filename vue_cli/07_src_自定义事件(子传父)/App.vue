@@ -6,7 +6,7 @@
         <!-- 通过自定义组件事件实现从父组件向子组件传递数据(第一种写法@) -->
         <!-- <Student @atg="getStudentName" @click.native="show" @haha.once="h" /> -->
         <!-- 通过自定义组件事件实现从父组件向子组件传递数据(第二种写法ref,灵活性强) -->
-        <!-- 给click添加修饰符native，表示原生click -->
+        <!-- 给click添加修饰符native，表示原生click(不然就被当做自定义事件) -->
         <Student ref="student" />
         <!-- 给组件绑定原生事件，需要在这个Student组件中，调用$emit -->
     </div>
