@@ -1,8 +1,14 @@
 import React, { Component } from "react"
-import { Route, Redirect, Switch } from "react-router-dom"
-import About from "./pages/About"
-import Home from "./pages/Home"
-import MyNavLink from "./components/MyNavLink"
+import { Route, Redirect, Switch, lazy, Suspense } from "react-router-dom"
+import Loading from "./pages/Loading"
+// 路由懒加载 lazy
+// import Home from "./pages/Home"
+const Home = lazy(() => import("./pages/Home"))
+// import MyNavLink from "./components/MyNavLink"
+const MyNavLink = lazy(() => import("./components/MyNavLink"))
+// import About from "./pages/About"
+const About = lazy(() => import("./pages/About"))
+
 export default class app extends Component {
   render() {
     return (
@@ -29,11 +35,14 @@ export default class app extends Component {
                 {/* <h3>我是About的内容</h3> */}
                 {/* 注册路由 */}
                 <Switch>
-                  <Route path="/about" component={About}></Route>
-                  <Route path="/home" component={Home}></Route>
-                  {/* 重定向 */}
-                  {/* 加了Switch，匹配后就不再往下匹配 */}
-                  <Redirect to="/about" />
+                  {/* 外面包裹Suspense，用在路由加载之前显示 Loading不使用懒加载*/}
+                  <Suspense fallback={<Loading />}>
+                    <Route path="/about" component={About}></Route>
+                    <Route path="/home" component={Home}></Route>
+                    {/* 重定向 */}
+                    {/* 加了Switch，匹配后就不再往下匹配 */}
+                    <Redirect to="/about" />
+                  </Suspense>
                 </Switch>
               </div>
             </div>
