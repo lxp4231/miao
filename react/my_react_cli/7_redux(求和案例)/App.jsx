@@ -8,7 +8,7 @@ export default class app extends Component {
   // state = {
   //   count: 0,
   // }//状态交给了redux，需要从redux中获取
-  // componentDidMount() {
+  // componentDidMount() {//可以放在index中
   //   // 页面一挂载就进行监测redux状态变化，调用render进行重新渲染
   //   store.subscribe(() => {
   //     //subscribe :只要状态改变就调用
@@ -22,7 +22,7 @@ export default class app extends Component {
     // this.setState({
     //   count: count + Number(value),
     // })
-    //2. 调用dispatch执行
+    //2. 调用dispatch执行  dispath在store中
     // store.dispatch({ type: "increment", data: value * 1 })
     store.dispatch(createIncrementAction(value * 1))
   }

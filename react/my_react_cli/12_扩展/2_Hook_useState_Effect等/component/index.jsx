@@ -33,10 +33,11 @@ export default function Index() {
   // React.useState 为一个数组，第一个参数为状态的初始值，第二个参数为更新状态的方法
   const [count, setCount] = React.useState(0) //0为初始值
   const [name, setName] = React.useState("liu")
+  // useContext 用于父子传值
   //点击添加
   function add() {
     // setCount(count + 1)//写法1
-    setCount(count => count + 1) //写法2
+    setCount(count => count + 1) //写法2//写成回调的形式，每次拿到先前的值
   }
   // 实现自增
   // React.useEffect 用于监测

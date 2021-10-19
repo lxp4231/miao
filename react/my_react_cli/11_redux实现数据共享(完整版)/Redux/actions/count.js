@@ -6,7 +6,7 @@ const createDecrementAction = data => ({ type: DECREMENT, data })
 // 异步执行
 const createDecrementSyncAction = (data, time) => {
   return dispatch => {
-    //dispatch会自动传过来
+    //dispatch会自动传过来，applyMiddleWare
     setTimeout(() => {
       dispatch(createIncrementAction(data))
     }, time)

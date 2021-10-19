@@ -35,6 +35,7 @@ class person extends Component {
 // 容器组件(用于和store通讯)
 export default connect(
   state => ({
+    //返回一个对象
     //state是总的状态，可以拿到任意被state管理的状态
     person: state.personReducer,
     count: state.countReducer,

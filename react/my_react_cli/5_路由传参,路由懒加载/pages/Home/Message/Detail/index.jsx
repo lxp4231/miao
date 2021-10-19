@@ -17,7 +17,7 @@ export default class index extends Component {
     // const {search} = this.props.location
     // const {id,title} = qs.parse(search.slice(1))
 
-    // 接收state参数
+    // 接收state参数(刷新页面会丢失参数)
     // const { id, title } = this.props.location.state || {}//因为存放在本地，考虑到数据清除后为空
     const findResult =
       this.state.msg.find(detailObj => {

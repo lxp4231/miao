@@ -6,7 +6,7 @@ import App from "./App"
 import store from "./Redux/store"
 // 渲染页面
 ReactDOM.render(<App />, document.querySelector("#root"))
-//直接在入口文件中监测状态变化，所有组件都被检测
+//直接在入口文件中监测状态变化，所有组件都被检测，状态改变就重新render
 store.subscribe(() => {
   ReactDOM.render(<App />, document.querySelector("#root"))
 })

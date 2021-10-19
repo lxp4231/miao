@@ -37,6 +37,7 @@ export default class index extends Component {
                   <Switch>
                     <Route path="/home/news" component={News}></Route>
                     <Route path="/home/message" component={Message}></Route>
+                    {/* 重定向 */}
                     <Redirect to="/home/news"></Redirect>
                   </Switch>
                 </div>

@@ -8,7 +8,7 @@ export default class app extends Component {
     return (
       <div>
         {/* 通过props形式传递store,给容器组件 */}
-        {/* <Count store={store} /> */}
+        {/* <Count store={store} /> 使用provider传*/}
         <Count />
       </div>
     )

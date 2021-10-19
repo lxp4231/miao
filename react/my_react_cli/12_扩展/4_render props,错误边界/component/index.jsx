@@ -19,7 +19,7 @@ export default class A extends PureComponent {
   }
   changeNname = () => {
     // state => (state.name = "liu666")
-    this.setState({})
+    this.setState({}) //component 改成pureComponent(只有props改变时才调用render)
   }
   render() {
     return (
@@ -27,8 +27,8 @@ export default class A extends PureComponent {
         <h4>A组件</h4>
         {/*  Provider 给所有子组件传递数据*/}
         <Provider value={{ name: this.state.name, age: this.state.age }}>
-          {/* 此方式形成父子关系 render */}
-          <B render={name2 => <C name2={name2} />} />
+          {/* 此方式形成父子关系 即<A><B/></A>render */}
+          <B render={name => <C name={name} />} />
         </Provider>
         <button onClick={this.changeNname}>点击change</button>
       </Fragment>

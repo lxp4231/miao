@@ -1,5 +1,4 @@
 /* eslint-disable no-const-assign */
-
 import React, { Component } from "react"
 // 引入react-redux的connect，用于链接redux与UI组件
 import { connect } from "react-redux"
@@ -55,7 +54,7 @@ class Count extends Component {
   }
 }
 
-// 容器组件
+// 容器组件//返回的是一个对象
 export default connect(
   state => ({
     //state为redux保存的状态
